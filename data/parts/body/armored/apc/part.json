@@ -1,0 +1,10 @@
+{
+"part" : {
+  "name" : "apc mod 1 vehicle body"
+  "mass" : 2400.00,
+  "buoyancy" : "300", /* плавучесть */
+  "model" : "apc-01",
+  "matherials" : "steel"
+}
+
+}

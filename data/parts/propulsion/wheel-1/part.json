@@ -1,0 +1,13 @@
+{
+"part" : {
+  "class" : "propulsion.wheel"
+  "name" : "apc mod 1 vehicle body"
+  "mass" : 2400.00,
+  "model" : "apc-01",
+  "matherials" : "steel"
+  "class-data" : {
+    "connections" :  {10,10,10}
+  }
+}
+
+}

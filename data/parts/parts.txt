@@ -1,0 +1,5 @@
+./body/armored/apc/part.json
+./lights/headlight/part.json
+./lights/sidelight/part.json
+./lights/backlight/part.json
+./equipment/weapon/laser-01/part.json
