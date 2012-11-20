@@ -11,7 +11,7 @@
 
 class Material {
   std::string _name;
-  float plotnost; // FIXME
+  float density;
   float quantity;
 };
 
