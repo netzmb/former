@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <!-- interface-requires gtk+ 3.0 -->
+  <object class="GtkTreeStore" id="class_tree"/>
+  <object class="GtkListStore" id="computed_props">
+    <columns>
+      <!-- column-name prop_name -->
+      <column type="gchar"/>
+      <!-- column-name prop_value -->
+      <column type="gfloat"/>
+    </columns>
+  </object>
+  <object class="GtkWindow" id="part_editor_window">
+    <property name="can_focus">False</property>
+    <property name="title" translatable="yes">Parts editor</property>
+    <signal name="delete-event" handler="on_part_editor_window_delete_event" swapped="no"/>
+    <child>
+      <object class="GtkScrolledWindow" id="scrolledwindow1">
+        <property name="visible">True</property>
+        <property name="can_focus">True</property>
+        <property name="shadow_type">in</property>
+        <child>
+          <placeholder/>
+        </child>
+      </object>
+    </child>
+  </object>
+</interface>
