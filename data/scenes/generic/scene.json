@@ -1,0 +1,19 @@
+[
+/*{"skybox": {"up", "dn", "left.png", "right.png", "front.png", "back.png"}},*/
+{"skybox": "desert"},
+{"terrain": {
+  "heightmap" : "defaultHmap.png",
+  "position" : {0,0,0},
+  "rotation" : {0,0,0},
+  "scale" : {0,0,0},
+  "color" : {255,255,255,255},
+  "maxLod" : 3,
+  "patchSize" : false,
+  "smooth" : 5,
+  "textures" : {"terrain-tex.png", {"detailmap.png", "dmap", {10,10,10}}},
+
+
+  }
+}
+]
+
