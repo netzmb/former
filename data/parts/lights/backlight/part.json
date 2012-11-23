@@ -1,14 +1,14 @@
 {
 "part" : {
-  "class" : "light"
-  "name" : "backlight"
+  "class" : "light",
+  "name" : "backlight",
   "mass" : 0.2,
   "model" : "backlight",
-  "matherials" : {"chydrates" : 0.19, "steel": 0.01}
+  "matherials" : {"chydrates" : 0.19, "steel": 0.01},
   "class-specific" : {
-    "direction" : {0,1,0},
-    "intensity" : 100
-    "color" : {255,0,0}
+    "direction" : {"x":0, "y":1, "z":0},
+    "intensity" : 100,
+    "color" : {"r":255,"g":0,"b":0}
   }
 }
 }

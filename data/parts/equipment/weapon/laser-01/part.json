@@ -1,9 +1,9 @@
 {
 "part" : {
-  "class" : "weapon"
-  "name" : "laser 01"
+  "class" : "weapon",
+  "name" : "laser 01",
   "mass" : 400.00,
   "model" : "laser-01",
   "matherials" : {"steel": 10}
-}
+  }
 }
