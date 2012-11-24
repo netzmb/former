@@ -9,6 +9,10 @@
 
 int main(int argc, char **argv)
 {
+    StateMgr::instance().init();
+    StateMgr::instance().update();
+    StateMgr::instance().close();
+
     return 0;
 }
 

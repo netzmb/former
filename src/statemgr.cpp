@@ -4,8 +4,15 @@
 
 #include "statemgr.h"
 
-void StateMgr::update() {
+bool StateManager::init() {
+    return false;
+}
+
+void StateManager::update() {
     return;
 }
 
+void StateManager::close() {
+    return;
+}
 
