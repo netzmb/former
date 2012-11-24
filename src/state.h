@@ -16,12 +16,21 @@ class State {
        SSTATUS_DONE
     };
 
+    State();
+
     bool isBatch() const { return _isBatch; };
+
+    bool init();
+    void update();
+    void close();
+    void change(StateStatus status) { _status = status; };
+
+    StateStatus getStatus() const {return _status;}; 
 
     private:
 
     bool _isBatch;
-
+    StateStatus _status;
 };
 
 
