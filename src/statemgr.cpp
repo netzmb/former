@@ -9,6 +9,9 @@
 
 
 bool StateManager::init() {
+    
+    _isDone = false;
+    
     //
     // load default states
     //
@@ -24,7 +27,7 @@ bool StateManager::init() {
 void StateManager::update() {
     for (std::list<State*>::iterator i = _states.begin();
          i != _states.end(); i++) {
-        (*i)->close();
+        (*i)->update();
     }
 
     return;

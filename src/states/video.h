@@ -13,12 +13,15 @@
 class Video : public State {
     public:
 
-    Video() {};
-    ~Video() {};
     bool init();
     void update();
     void close();
     void reset();
+
+    Video() {};
+    ~Video() {};
+
+    
 };
 
 #endif /* _VIDEO_H_ */
