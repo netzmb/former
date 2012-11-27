@@ -14,5 +14,5 @@ class Instruction {
   virtual bool execute()=0;
 };
 
-#endif /* INSTRUCTIONH_ */ 
+#endif /* INSTRUCTION_H_ */ 
 

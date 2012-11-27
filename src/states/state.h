@@ -1,8 +1,7 @@
 //
 // statemgr.cpp
 //
-
-
+//
 
 #ifndef _STATE_H_
 #define _STATE_H_
@@ -17,12 +16,14 @@ class State {
     };
 
     State();
+    ~State() {};
 
     bool isBatch() const { return _isBatch; };
 
-    bool init();
-    void update();
-    void close();
+    virtual bool init();
+    virtual void update();
+    virtual void close();
+    virtual void reset();
     void change(StateStatus status) { _status = status; };
 
     StateStatus getStatus() const {return _status;}; 
@@ -35,3 +36,4 @@ class State {
 
 
 #endif /* _STATE_H_ */
+

@@ -9,7 +9,18 @@ State::State()
 
 
 bool State::init() {
-    return true;
+    return;
+}
+
+void State::update() {
+    return;
+}
+
+void State::reset() {
+    return;
 }
 
 
+void State::close() {
+    return;
+}

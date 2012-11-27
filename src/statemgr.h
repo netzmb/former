@@ -8,7 +8,7 @@
 #define _STATEMGR_H_
 
 #include <list>
-#include "state.h"
+#include "states/state.h"
 #include "singleton.h"
 
 class StateManager {
@@ -17,9 +17,11 @@ class StateManager {
     void update();
     void close();
 
+    void add(State* state);
+
     private:
-    std::list<State> _states;
-    
+    //std::list<State> _states;
+    std::list<State*> _states;
 };
 
 typedef SingletonClass<StateManager> StateMgr;
