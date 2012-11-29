@@ -13,6 +13,7 @@
 
 class StateManager {
     public:
+    
     bool init();
     void update();
     void close();
