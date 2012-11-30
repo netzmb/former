@@ -2,8 +2,6 @@
 // statemgr.h
 //
 
-
-
 #ifndef _STATEMGR_H_
 #define _STATEMGR_H_
 
@@ -11,7 +9,7 @@
 #include "states/state.h"
 #include "singleton.h"
 
-class StateManager {
+class StateManager : public Singleton<StateManager> {
     public:
     
     bool init();
@@ -29,7 +27,7 @@ class StateManager {
     bool _isDone;
 };
 
-typedef SingletonClass<StateManager> StateMgr;
+//typedef SingletonClass<StateManager> StateMgr;
 
 #endif /* _STATEMGR_H_ */
 

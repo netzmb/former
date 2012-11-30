@@ -1,10 +1,14 @@
-
+//
+// graphics.h
+//
 
 #ifndef _GRAPHICS_H_
 #define _GRAPHICS_H_
 
 
-#include "singleton2.h"
+#include "singleton.h"
+#include "config.h"
+
 
 
 class Graphics : public Singleton<Graphics> {
@@ -13,11 +17,14 @@ class Graphics : public Singleton<Graphics> {
 
     
     bool init() { return true; };
+    void update() {};
     void close() {};
     
     private:
+
     
 };
 
 
 #endif /* _GRAPHICS_H_ */
+
