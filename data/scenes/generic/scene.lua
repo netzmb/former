@@ -3,10 +3,11 @@
 --
 
 
-Scene->loadTerrain(
-  "heightmap.png",
-  position3d,
-  rotation3d,
+--Scene.loadTerrain(
+--  "heightmap.png",
+--  position3d,
+--  rotation3d,
+--  )
 
-  )
+
 
