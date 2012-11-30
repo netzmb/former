@@ -20,12 +20,12 @@ class Scripting : public Singleton<Scripting> {
 
     bool loadFile(const std::string fileName);
 
-    int SceneLoad(lua_State* lua);
+    static int SceneLoad(lua_State* lua);
 
     private:
 
     lua_State* _lua;
-    static luaL_reg _sceneFunctions[];
+    //static luaL_Reg _sceneFunctions[];
     //luaL_reg _sceneFunctions[];
 
 

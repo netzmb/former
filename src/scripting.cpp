@@ -16,7 +16,6 @@ bool Scripting::init() {
     
     reset();
 
-
     return true;
 }
 
@@ -30,19 +29,24 @@ void Scripting::reset() {
 
     luaL_openlibs(_lua);
 
+    static const luaL_Reg _sceneFunctions[] = {
+        {"load", &Scripting::SceneLoad},
+        {NULL, NULL}
+        };
     /*_sceneFunctions = {
         {"load", &Scripting::SceneLoad},
         {NULL, NULL}
         };*/
 
-    //luaL_register(_lua, "Scene", _sceneFunctions);
+    luaL_register(_lua, "Scene", _sceneFunctions);
 
     return;
 }
 
 
 void Scripting::close() {
-    lua_close(_lua);
+    if (_lua != NULL)
+        lua_close(_lua);
     return;
 }
 
@@ -73,14 +77,16 @@ bool Scripting::loadFile(const std::string fileName) {
 // script actions
 //
 
-int SceneLoad(lua_State* lua) {
+int Scripting::SceneLoad(lua_State* lua) {
     // get scene name
+
+    std::cout << "Scene.load()" << std::endl;
     std::string sceneName = lua_tostring(lua, 1);
 
     std::cout << sceneName.c_str() << std::endl;
 
     // return 1 argument
-    lua_pushnumber(lua, 0);
+    lua_pushnumber(lua, 1);
     return 1;
 }
 

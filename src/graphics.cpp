@@ -7,7 +7,8 @@
 
 bool Graphics::init() {
     irr::SIrrlichtCreationParameters params;
-    params.DriverType = irr::video::EDT_OPENGL;
+    //params.DriverType = irr::video::EDT_OPENGL;
+    params.DriverType = irr::video::EDT_NULL;
     _device = irr::createDeviceEx(params);
     return true;
 }

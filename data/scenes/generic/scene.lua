@@ -9,5 +9,5 @@
 --  rotation3d,
 --  )
 
-
+Scene.load("test-scene")
 
