@@ -2,10 +2,11 @@
 "skybox" : "desert",
 "terrain": {
   "heightmap" : "defaultHmap.png",
-  "position" : {"x":0,"y":1,"z":0},
+  "position" : [0,1,0],
+  "position2" : {"x":0,"y":1,"z":0},
   "rotation" : {"x":0,"y":1,"z":0},
   "scale" : {"x":0,"y":1,"z":0},
-  "color" : {"a":255,"r":255,"g":255,"b":255},
+  "color" : [255,255,255,255],
   "maxLod" : 3,
   "patchSize" : false,
   "smooth" : 5,
