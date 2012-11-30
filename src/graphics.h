@@ -9,6 +9,7 @@
 #include "singleton.h"
 #include "config.h"
 
+#include <irrlicht.h>
 
 
 class Graphics : public Singleton<Graphics> {
@@ -16,11 +17,13 @@ class Graphics : public Singleton<Graphics> {
     
 
     
-    bool init() { return true; };
-    void update() {};
-    void close() {};
+    bool init();
+    void update();
+    void close();
     
     private:
+    
+    irr::IrrlichtDevice* _device;
 
     
 };
