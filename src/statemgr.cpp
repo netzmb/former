@@ -20,7 +20,7 @@ bool StateManager::init() {
     //State * pVideo = static_cast<State*>(new Video);
     //add(pVideo);
 
-    return false;
+    return true;
 }
 
 
