@@ -9,6 +9,11 @@ class Engine : public Singleton<Engine> {
     bool init();
     void loop();
     void close();
+
+    bool isDone() const { return _isDone; }
+
+    private:
+    bool _isDone;
 };
 
 

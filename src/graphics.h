@@ -15,15 +15,23 @@
 class Graphics : public Singleton<Graphics> {
     public:
     
-
-    
     bool init();
     void update();
     void close();
+
+    void frameBegin();
+    void frameEnd();
+
+    bool isDone() const {return _isDone;};
     
     private:
     
     irr::IrrlichtDevice* _device;
+    irr::video::IVideoDriver* _driver;
+    irr::scene::ISceneManager* _scenemgr;
+    irr::video::SColor _frameColor;        // 
+
+    bool _isDone;
 
     
 };

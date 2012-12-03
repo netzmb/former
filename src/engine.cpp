@@ -4,6 +4,7 @@
 
 #include "engine.h"
 
+#include "config.h"
 #include "statemgr.h"
 #include "graphics.h"
 #include "scripting.h"
@@ -11,10 +12,13 @@
 
 bool Engine::init() {
 
+    _isDone = false;
+
     //
     // init subsystems
     //
     
+    Config::instance().init();
     Graphics::instance().init();
     StateManager::instance().init();
     Scripting::instance().init();
@@ -25,10 +29,14 @@ bool Engine::init() {
 
 void Engine::loop() {
 
-    while (!StateManager::instance().isDone()) {
+    //while (!StateManager::instance().isDone()) {
+    while (!isDone()) {
         StateManager::instance().update();
-        Graphics::instance().update();
-        //Scripting::instance().update();
+        //Graphics::instance().update();
+        Graphics::instance().frameBegin();
+        Graphics::instance().frameEnd();
+        Scripting::instance().update();
+        _isDone = Graphics::instance().isDone();
     }
 
     return;
