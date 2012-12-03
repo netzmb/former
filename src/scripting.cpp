@@ -20,6 +20,10 @@ bool Scripting::init() {
 }
 
 
+void Scripting::update() {
+    return;
+}
+
 void Scripting::reset() {
 
     if (_lua != NULL)

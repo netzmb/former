@@ -15,6 +15,7 @@ class Scripting : public Singleton<Scripting> {
     public:
 
     bool init();
+    void update();
     void reset();
     void close();
 
@@ -27,15 +28,8 @@ class Scripting : public Singleton<Scripting> {
     lua_State* _lua;
     //static luaL_Reg _sceneFunctions[];
     //luaL_reg _sceneFunctions[];
-
-
-
 };
 
 
 #endif // _SCRIPTING_H_
-
-
-
-
 
