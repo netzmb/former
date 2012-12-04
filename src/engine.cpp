@@ -5,6 +5,7 @@
 #include "engine.h"
 
 #include "config.h"
+#include "logger.h"
 #include "statemgr.h"
 #include "graphics.h"
 #include "scripting.h"
@@ -19,6 +20,7 @@ bool Engine::init() {
     //
     
     Config::instance().init();
+    Logger::instance().init();
     Graphics::instance().init();
     StateManager::instance().init();
     Scripting::instance().init();
@@ -47,6 +49,9 @@ void Engine::close() {
     Scripting::instance().close();
     StateManager::instance().close();
     Graphics::instance().close();
+    Logger::instance().close();
+    Config::instance().close();
+    
     return;
 }
 
