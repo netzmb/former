@@ -13,6 +13,7 @@ class Engine : public Singleton<Engine> {
     bool isDone() const { return _isDone; }
 
     private:
+    static void sysSignalHandler(int sig_num=0);
     bool _isDone;
 };
 

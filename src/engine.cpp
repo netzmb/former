@@ -4,6 +4,10 @@
 
 #include "engine.h"
 
+#include <signal.h> // signal processing
+#include <stdlib.h> // exit() function
+
+
 #include "config.h"
 #include "logger.h"
 #include "statemgr.h"
@@ -24,6 +28,9 @@ bool Engine::init() {
     Graphics::instance().init();
     StateManager::instance().init();
     Scripting::instance().init();
+
+    // TODO wrap signal to ifdef
+    signal(SIGINT, Engine::sysSignalHandler);
 
     return true;
 }
@@ -55,4 +62,17 @@ void Engine::close() {
     return;
 }
 
+
+// TODO wrap signal to ifdef
+void Engine::sysSignalHandler(int sigNum) {
+    int sigNum1 = 123;
+    Logger() << sigNum1;
+    //Logger() << "Signal " << sigNum1 << " accepted, exiting...\n";
+    //Logger() << "Signal " << sigNum << " accepted, exiting...\n";
+    Logger() << "Signal accepted, exiting...\n";
+    Engine::instance().close();
+
+    //exit(sigNum);
+    return;
+}
 

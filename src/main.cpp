@@ -7,6 +7,7 @@
 #include "engine.h"
 
 #include "scripting.h"
+//#include "signal_proc.h"
 
 int main(int argc, char **argv)
 {

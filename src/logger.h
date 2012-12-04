@@ -30,6 +30,23 @@ class Logger : public Singleton<Logger> {
         return;
     }
 
+    
+    //const std::ostream& operator<<(int value) {
+    friend std::ostream& operator<<(std::ostream& os, int value) {
+        
+        //std::ostringstream _out;
+        //_out << " [" << value << "]";
+
+        os << " [" << value << "]";
+
+        //this->instance() << _out.str().c_str();
+        //this->instance() << os.str().c_str();
+
+        return os;
+        //return std::ostream(_out.rdbuf());
+    }
+
+
     void operator<<(const irr::core::vector3df& vector) {
         
         std::ostringstream _out;
