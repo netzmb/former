@@ -20,7 +20,6 @@ bool Graphics::init() {
     _driver = _device->getVideoDriver();
     _scenemgr = _device->getSceneManager();
 
-
     return true;
 }
 

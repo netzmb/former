@@ -6,32 +6,31 @@
 #define _LOGGER_H_
 
 
-#include <iostream> // std::cout, std::cerr
-#include <fstream>  // std::ofstream
-#include <sstream>  // std::ostringstream
-
 #include <irrlicht.h>
 #include "singleton.h"
 
 
+
+
 class Logger : public Singleton<Logger> {
     public:
-    
+
     bool init();
     void close();
 
-    void error(const irr::c8* text) { _irrLogger->log(text, irr::ELL_ERROR); }
-    void warning(const irr::c8* text) { _irrLogger->log(text, irr::ELL_WARNING); }
-    void info(const irr::c8* text) { _irrLogger->log(text, irr::ELL_INFORMATION); }
+    //static void error(const char* text) { _irrLogger->log(text, irr::ELL_ERROR); }
+    static void error(const char* format, ...);
+    //static void warning(const char* text) { _irrLogger->log(text, irr::ELL_WARNING); }
+    static void warning(const char* format, ...);
+    //static void info(const char* text) { _irrLogger->log(text, irr::ELL_INFORMATION); }
+    static void info(const char* format, ...);
 
-    void write(const irr::c8* text);
+    //static void format(const char* format, ...);
 
-    Logger& operator()() {
-        return instance();
-    }
+    static void store(const char* text);
 
     private:
-    irr::ILogger* _irrLogger;
+    static irr::ILogger* _irrLogger;
 };
 
 #endif /* _LOGGER_H_ */

@@ -3,12 +3,7 @@
 //
 
 #include "scripting.h"
-
-// FIXME replace to Log << blah;
-#include <iostream>
-
-
-
+#include "logger.h"
 
 bool Scripting::init() {
 
@@ -56,19 +51,22 @@ void Scripting::close() {
 
 
 
-bool Scripting::loadFile(const std::string fileName) {
+bool Scripting::loadFile(const char* fileName) {
     
-    std::cout << "Scripting::loadFile(" << fileName << ")" << std::endl;
+    // TODO add formatted output to logger
+	//irr::core::stringc message();
+	//Logger::warning("Scripting::loadFile(" << fileName << ")" << std::endl;
+	Logger::info("Scripting::loadFile(%s)", fileName);
 
     // TODO to wrapper "Files" (archive access)
     //const std::string fullName = "/scripts/" + fileName;
 
     //std::cout << "Scripting::loadFile(" << fullName << ")" << std::endl;
 
-    if (luaL_dofile(_lua, fileName.c_str()) != 0) {
+    if (luaL_dofile(_lua, fileName) != 0) {
         // FIXME
-        std::cout << "Scripting::loadFile failed :" << fileName
-            << " : " << lua_tostring(_lua, -1) << std::endl;
+        //std::cout << "Scripting::loadFile failed :" << fileName
+        //    << " : " << lua_tostring(_lua, -1) << std::endl;
         return false;
     }
 
@@ -84,10 +82,10 @@ bool Scripting::loadFile(const std::string fileName) {
 int Scripting::SceneLoad(lua_State* lua) {
     // get scene name
 
-    std::cout << "Scene.load()" << std::endl;
-    std::string sceneName = lua_tostring(lua, 1);
+    //std::cout << "Scene.load()" << std::endl;
+    //std::string sceneName = lua_tostring(lua, 1);
 
-    std::cout << sceneName.c_str() << std::endl;
+    //std::cout << sceneName.c_str() << std::endl;
 
     // return 1 argument
     lua_pushnumber(lua, 1);

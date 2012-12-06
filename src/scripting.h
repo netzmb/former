@@ -9,7 +9,7 @@
 #include "singleton.h"
 
 #include <lua.hpp>
-#include <string>
+#include <irrlicht.h>
 
 class Scripting : public Singleton<Scripting> {
     public:
@@ -19,7 +19,7 @@ class Scripting : public Singleton<Scripting> {
     void reset();
     void close();
 
-    bool loadFile(const std::string fileName);
+    bool loadFile(const char* fileName);
 
     static int SceneLoad(lua_State* lua);
 

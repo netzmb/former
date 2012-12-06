@@ -10,7 +10,7 @@ template <class T>
 class Singleton {
     public:
 
-    static T &instance() {
+    static T& instance() {
         static T *_instance;
 
         if (_instance == 0)
@@ -18,6 +18,9 @@ class Singleton {
 
         return *_instance;
     }
+
+
+
 
 //    protected:
 //    Singleton();
