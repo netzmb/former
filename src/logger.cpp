@@ -60,7 +60,6 @@ void Logger::info(const char* format, ...) {
 	va_end(argList);
 
 	_irrLogger->log(msgBuffer,irr::ELL_INFORMATION);
-	storeLine(msgBuffer);
 	return;
 }
 
@@ -76,7 +75,6 @@ void Logger::warning(const char* format, ...) {
 	va_end(argList);
 
 	_irrLogger->log(msgBuffer,irr::ELL_WARNING);
-	storeLine(msgBuffer);
 	return;
 }
 
@@ -92,7 +90,6 @@ void Logger::error(const char* format, ...) {
 	va_end(argList);
 
 	_irrLogger->log(msgBuffer,irr::ELL_WARNING);
-	storeLine(msgBuffer);
 	return;
 }
 

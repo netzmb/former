@@ -1,5 +1,6 @@
 #include "config.h"
 
+#include "evt_reciever.h"
 
 
 bool Config::init() {
@@ -17,6 +18,7 @@ bool Config::reset() {
 
     params.DriverType = irr::video::EDT_OPENGL;
     //params.DriverType = irr::video::EDT_NULL;
+    params.EventReceiver = new EngineEventReceiver();
     _irrDevice = irr::createDeviceEx(params);
     if (_irrDevice == NULL) {
         // TODO Log() errors
