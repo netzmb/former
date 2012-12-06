@@ -56,7 +56,7 @@ void Engine::close() {
     Scripting::instance().close();
     StateManager::instance().close();
     Graphics::instance().close();
-    //Logger::instance().close();
+    Logger::instance().close();
     Config::instance().close();
     
     return;

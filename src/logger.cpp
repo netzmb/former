@@ -38,7 +38,7 @@ void Logger::close() {
 	if (_logFile == NULL)
 		return;
 
-	info("Logger stopped");
+	info("Logger::close()");
 	_logFile->drop();
     return;
 }
@@ -59,7 +59,7 @@ void Logger::info(const char* format, ...) {
 	vsprintf(msgBuffer, format, argList);
 	va_end(argList);
 
-	_irrLogger->log(msgBuffer,irr::ELL_INFORMATION);
+	_irrLogger->log(msgBuffer, irr::ELL_INFORMATION);
 	return;
 }
 
@@ -74,7 +74,7 @@ void Logger::warning(const char* format, ...) {
 	vsprintf(msgBuffer, format, argList);
 	va_end(argList);
 
-	_irrLogger->log(msgBuffer,irr::ELL_WARNING);
+	_irrLogger->log(msgBuffer, irr::ELL_WARNING);
 	return;
 }
 
@@ -89,7 +89,7 @@ void Logger::error(const char* format, ...) {
 	vsprintf(msgBuffer, format, argList);
 	va_end(argList);
 
-	_irrLogger->log(msgBuffer,irr::ELL_WARNING);
+	_irrLogger->log(msgBuffer, irr::ELL_WARNING);
 	return;
 }
 

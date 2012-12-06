@@ -30,6 +30,7 @@ bool Config::reset() {
 
 
 void Config::close() {
+	_irrDevice->drop();
     return;
 }
 

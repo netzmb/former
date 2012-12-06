@@ -54,7 +54,8 @@ void Graphics::update() {
 
 
 void Graphics::close() {
-    _device->drop();
+    _driver->drop();
+    _scenemgr->drop();
     return;
 }
 
