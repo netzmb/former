@@ -7,19 +7,22 @@
 
 
 #include "singleton.h"
+#include <irrlicht.h>
 
 
 class Config : public Singleton<Config> {
     public:
     
-    bool init() { reset(); return true; };
-    void reset() {};
-    void close() {};
+    bool init();
+    bool reset();
+    void close();
+
+    irr::IrrlichtDevice* getIrrDevice() { return _irrDevice; }
 
     
     private:
 
-    
+    irr::IrrlichtDevice* _irrDevice;
 };
 
 

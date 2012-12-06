@@ -20,52 +20,18 @@ class Logger : public Singleton<Logger> {
     bool init();
     void close();
 
-    void operator<<(const char* msg) {
+    void error(const irr::c8* text) { _irrLogger->log(text, irr::ELL_ERROR); }
+    void warning(const irr::c8* text) { _irrLogger->log(text, irr::ELL_WARNING); }
+    void info(const irr::c8* text) { _irrLogger->log(text, irr::ELL_INFORMATION); }
 
-        // TODO implement D.R.Y.
-        std::ostringstream _out;
-        _out << "Logger: " << msg;
-        _logFile << _out.str();
-        std::cout << _out.str();
-        return;
-    }
-
-    
-    //const std::ostream& operator<<(int value) {
-    friend std::ostream& operator<<(std::ostream& os, int value) {
-        
-        //std::ostringstream _out;
-        //_out << " [" << value << "]";
-
-        os << " [" << value << "]";
-
-        //this->instance() << _out.str().c_str();
-        //this->instance() << os.str().c_str();
-
-        return os;
-        //return std::ostream(_out.rdbuf());
-    }
-
-
-    void operator<<(const irr::core::vector3df& vector) {
-        
-        std::ostringstream _out;
-        _out << "(" << vector.X
-             << "," << vector.Y
-             << "," << vector.Z << ")";
-
-        this->instance() << _out.str().c_str();
-        
-        return;
-    }
+    void write(const irr::c8* text);
 
     Logger& operator()() {
         return instance();
     }
 
     private:
-
-    std::ofstream _logFile;
+    irr::ILogger* _irrLogger;
 };
 
 #endif /* _LOGGER_H_ */

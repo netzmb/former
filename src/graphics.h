@@ -23,6 +23,8 @@ class Graphics : public Singleton<Graphics> {
     void frameEnd();
 
     bool isDone() const {return _isDone;};
+
+    irr::IrrlichtDevice* getDevice() const { return _device; };
     
     private:
     

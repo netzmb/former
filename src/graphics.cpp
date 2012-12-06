@@ -5,7 +5,6 @@
 #include "graphics.h"
 
 
-
 bool Graphics::init() {
 
     _isDone = false;
@@ -13,15 +12,8 @@ bool Graphics::init() {
 
 
     // TODO move device params to Config
-    irr::SIrrlichtCreationParameters params;
+    _device = Config::instance().getIrrDevice();
 
-    params.DriverType = irr::video::EDT_OPENGL;
-    //params.DriverType = irr::video::EDT_NULL;
-    _device = irr::createDeviceEx(params);
-    if (_device == NULL) {
-        // TODO Log() errors
-        return false;
-    }
     // TODO put CMake project name and version to header
     _device->setWindowCaption(L"former");
 

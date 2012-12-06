@@ -28,6 +28,7 @@ bool Engine::init() {
     Graphics::instance().init();
     StateManager::instance().init();
     Scripting::instance().init();
+    Logger().info("test");
 
     // TODO wrap signal to ifdef
     signal(SIGINT, Engine::sysSignalHandler);
@@ -56,7 +57,7 @@ void Engine::close() {
     Scripting::instance().close();
     StateManager::instance().close();
     Graphics::instance().close();
-    Logger::instance().close();
+    //Logger::instance().close();
     Config::instance().close();
     
     return;
@@ -65,14 +66,14 @@ void Engine::close() {
 
 // TODO wrap signal to ifdef
 void Engine::sysSignalHandler(int sigNum) {
-    int sigNum1 = 123;
-    Logger() << sigNum1;
+    //int sigNum1 = 123;
+    //Logger() << sigNum1;
     //Logger() << "Signal " << sigNum1 << " accepted, exiting...\n";
     //Logger() << "Signal " << sigNum << " accepted, exiting...\n";
-    Logger() << "Signal accepted, exiting...\n";
+    Logger().error("system signal recieved (SIGINT), exiting");
     Engine::instance().close();
 
-    //exit(sigNum);
+    exit(sigNum);
     return;
 }
 
