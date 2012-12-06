@@ -27,10 +27,11 @@ class Logger : public Singleton<Logger> {
 
     //static void format(const char* format, ...);
 
-    static void store(const char* text);
+    static void storeLine(const char* text);
 
     private:
     static irr::ILogger* _irrLogger;
+    static irr::io::IWriteFile* _logFile;
 };
 
 #endif /* _LOGGER_H_ */

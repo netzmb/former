@@ -2,6 +2,7 @@
 // logger.cpp
 //
 
+#include <string.h> // C strlen()
 #include <stdarg.h>
 #include "logger.h"
 
@@ -12,18 +13,33 @@
 
 
 irr::ILogger* Logger::_irrLogger = NULL;
+irr::io::IWriteFile* Logger::_logFile = NULL;
 
 
 bool Logger::init() {
-    // FIXME get log path from Config, CMake project name as log name
-    _irrLogger = (Config::instance().getIrrDevice())->getLogger();
 
-    //Log = &Logger::instance();
+	_irrLogger = (Config::instance().getIrrDevice())->getLogger();
+
+    // FIXME get log path from Config, CMake project name as log name
+	irr::io::path logPath("former.log");
+	irr::io::IFileSystem* fs = Config::instance().getFS();
+	_logFile = fs->createAndWriteFile("former.log");
+
+	if (_logFile == NULL)
+		warning("Logger::init() failed to open [%s]", logPath.c_str());
+
+	info("Logger::init() logger initialized");
+
     return true;
 }
 
 
 void Logger::close() {
+	if (_logFile == NULL)
+		return;
+
+	info("Logger stopped");
+	_logFile->drop();
     return;
 }
 
@@ -31,7 +47,7 @@ void Logger::close() {
 // TODO implement D.R.Y.: aggregate all "va_list" methods to one
 //      (use templates or something else)
 
-// TODO move buffer size to private const members
+// TODO move buffer size to private constant members
 
 void Logger::info(const char* format, ...) {
 
@@ -44,6 +60,7 @@ void Logger::info(const char* format, ...) {
 	va_end(argList);
 
 	_irrLogger->log(msgBuffer,irr::ELL_INFORMATION);
+	storeLine(msgBuffer);
 	return;
 }
 
@@ -59,6 +76,7 @@ void Logger::warning(const char* format, ...) {
 	va_end(argList);
 
 	_irrLogger->log(msgBuffer,irr::ELL_WARNING);
+	storeLine(msgBuffer);
 	return;
 }
 
@@ -74,6 +92,7 @@ void Logger::error(const char* format, ...) {
 	va_end(argList);
 
 	_irrLogger->log(msgBuffer,irr::ELL_WARNING);
+	storeLine(msgBuffer);
 	return;
 }
 
@@ -84,9 +103,17 @@ void Logger::error(const char* format, ...) {
  *
  */
 
-void Logger::store(const irr::c8* text) {
+void Logger::storeLine(const char* text) {
 
-    return;
+	if (_logFile == NULL)
+		return;
+
+	irr::core::stringc logLine(text);
+	logLine.append('\n');
+
+	_logFile->write(logLine.c_str(), logLine.size());
+
+	return;
 }
 
 

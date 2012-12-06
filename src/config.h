@@ -18,13 +18,11 @@ class Config : public Singleton<Config> {
     void close();
 
     irr::IrrlichtDevice* getIrrDevice() { return _irrDevice; }
-
+    irr::io::IFileSystem* getFS() { return _irrDevice->getFileSystem(); }
     
     private:
 
     irr::IrrlichtDevice* _irrDevice;
 };
 
-
 #endif /* _CONFIG_H_ */
-
