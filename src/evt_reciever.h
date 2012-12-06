@@ -12,6 +12,7 @@
 #include "logger.h"
 
 class EngineEventReceiver : public irr::IEventReceiver {
+	// TODO send "userdata" of user events as two enum-like values
 public:
 	bool OnEvent(const irr::SEvent& event) {
 		if (event.EventType == irr::EET_LOG_TEXT_EVENT) {
