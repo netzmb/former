@@ -39,6 +39,12 @@ message("BTYPE ${CMAKE_BUILD_TYPE}")
 find_package(Lua51 REQUIRED)
 find_package(Irrlicht REQUIRED)
 find_package(Bullet REQUIRED)
+find_package(JsonCpp REQUIRED)
+
+message("JsonCpp includes: ${JSONCPP_INCLUDE_DIR}")
+message("JsonCpp libs:     ${JSONCPP_LIBRARIES}")
+
+
 
 # for irrlicht
 find_package(JPEG REQUIRED)
@@ -51,14 +57,16 @@ find_package(X11 REQUIRED)      # for Xxf86vm
 # connecting libs
 #
 include_directories(
-    ${LUA_INCLUDE_DIR}
-    ${IRRLICHT_INCLUDE_DIR}
-    ${JPEG_INCLUDE_DIR}
-    ${BZIP2_INCLUDE_DIR}
-    ${PNG_INCLUDE_DIR}
-    ${OPENGL_INCLUDE_DIR}
-    ${X11_INCLUDE_DIR}
-    ${BULLET_INCLUDE_DIR}
+    ${PROJECT_SOURCE_DIR}/src
+    ${LUA_INCLUDE_DIRS}
+    ${IRRLICHT_INCLUDE_DIRS}
+    ${JPEG_INCLUDE_DIRS}
+    ${BZIP2_INCLUDE_DIRS}
+    ${PNG_INCLUDE_DIRS}
+    ${OPENGL_INCLUDE_DIRS}
+    ${X11_INCLUDE_DIRS}
+    ${BULLET_INCLUDE_DIRS}
+    ${JSONCPP_INCLUDE_DIR}
     )
 
 
@@ -76,5 +84,6 @@ target_link_libraries(${PROJECT_NAME}
     #${X11_X11_LIB}
     ${X11_Xxf86vm_LIB}
     ${BULLET_LIBRARIES}
+    ${JSONCPP_LIBRARIES}
     )
 
