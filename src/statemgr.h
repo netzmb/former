@@ -5,9 +5,11 @@
 #ifndef _STATEMGR_H_
 #define _STATEMGR_H_
 
-#include <list>
+#include <irrlicht.h>
+
 #include "states/state.h"
 #include "singleton.h"
+
 
 class StateManager : public Singleton<StateManager> {
     public:
@@ -23,7 +25,7 @@ class StateManager : public Singleton<StateManager> {
 
     private:
     //std::list<State> _states;
-    std::list<State*> _states;
+    irr::core::list<State*> _states;
     bool _isDone;
 };
 

@@ -7,18 +7,17 @@
 #ifndef _PART_H_
 #define _PART_H_
 
-#include <list>
-#include <string>
+#include <irrlicht.h>
 #include "material.h"
 
 
 class Part {
   private:
-  std::list<Material> _materials;
+  irr::core::list<Material> _materials;
   float _mass;
   int _hitPoints;
   int _explosiveFactor;
-  std::list<std::string> _scripts;
+  irr::core::list<irr::core::stringc> _scripts;
 };
 
 

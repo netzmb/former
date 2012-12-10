@@ -12,6 +12,7 @@
 class Instruction {
   public:
   virtual bool execute()=0;
+  virtual ~Instruction();
 };
 
 #endif /* INSTRUCTION_H_ */ 

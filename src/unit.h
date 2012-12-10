@@ -6,7 +6,7 @@
 #define _UNIT_H_
 
 
-#include <list>
+#include <irrlicht.h>
 
 #include "player.h"
 #include "instruction.h"
@@ -19,8 +19,8 @@ class Unit {
   bool _active;
   bool _selected;
   int _hitPoints;
-  std::list <Instruction> _instructions;
-  std::list <Part> _parts;
+  irr::core::list<Instruction> _instructions;
+  irr::core::list<Part> _parts;
 };
 
 #endif /* _UNIT_H_ */

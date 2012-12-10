@@ -5,7 +5,9 @@
 #include "statemgr.h"
 
 // default states
-#include "states/video.h"
+//#include "states/video.h"
+
+using namespace irr;
 
 
 bool StateManager::init() {
@@ -25,7 +27,7 @@ bool StateManager::init() {
 
 
 void StateManager::update() {
-    for (std::list<State*>::iterator i = _states.begin();
+    for (core::list<State*>::Iterator i = _states.begin();
          i != _states.end(); i++) {
         (*i)->update();
     }
@@ -35,7 +37,7 @@ void StateManager::update() {
 
 
 void StateManager::close() {
-    for (std::list<State*>::iterator i = _states.begin();
+    for (core::list<State*>::Iterator i = _states.begin();
          i != _states.end(); i++) {
         (*i)->close();
     }
