@@ -1,5 +1,5 @@
 //
-// statemgr.cpp
+// state.h
 //
 //
 
@@ -16,7 +16,7 @@ class State {
     };
 
     State();
-    ~State() {};
+    virtual ~State() {};
 
     bool isBatch() const { return _isBatch; };
 
