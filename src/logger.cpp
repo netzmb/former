@@ -2,12 +2,11 @@
 // logger.cpp
 //
 
-#include <string.h> // C strlen()
 #include <stdarg.h>
 #include "logger.h"
 
 
-#include "config.h"
+#include "configuration.h"
 
 #define LOG_LINE_BUFSIZE 1024
 

@@ -7,7 +7,7 @@
 
 
 #include "singleton.h"
-#include "config.h"
+#include "configuration.h"
 
 #include <irrlicht.h>
 
@@ -22,9 +22,9 @@ class Graphics : public Singleton<Graphics> {
     void frameBegin();
     void frameEnd();
 
-    bool isDone() const {return _isDone;};
+    bool isDone() const {return _isDone;}
 
-    irr::IrrlichtDevice* getDevice() const { return _device; };
+    irr::IrrlichtDevice* getDevice() const { return _device; }
     
     private:
     

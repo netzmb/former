@@ -8,7 +8,7 @@
 #include <stdlib.h> // exit() function
 
 
-#include "config.h"
+#include "configuration.h"
 #include "logger.h"
 #include "statemgr.h"
 #include "graphics.h"

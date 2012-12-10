@@ -2,6 +2,10 @@
 // engine.h
 //
 
+
+#ifndef _ENGINE_H_
+#define _ENGINE_H_
+
 #include "singleton.h"
 
 class Engine : public Singleton<Engine> {
@@ -17,5 +21,5 @@ class Engine : public Singleton<Engine> {
     bool _isDone;
 };
 
-
+#endif /* _ENGINE_H_ */
 
