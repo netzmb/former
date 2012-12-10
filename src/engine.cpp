@@ -38,13 +38,12 @@ bool Engine::init() {
 
 void Engine::loop() {
 
-    //while (!StateManager::instance().isDone()) {
     while (!isDone()) {
         StateManager::instance().update();
-        //Graphics::instance().update();
         Graphics::instance().frameBegin();
         Graphics::instance().frameEnd();
         Scripting::instance().update();
+        // FIXME
         _isDone = Graphics::instance().isDone();
     }
 

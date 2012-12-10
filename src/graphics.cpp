@@ -7,7 +7,7 @@
 
 bool Graphics::init() {
 
-    _isDone = false;
+    //_isDone = false;
     _frameColor.set(255,0,0,255); // blue
 
 
@@ -42,7 +42,7 @@ void Graphics::frameBegin() {
 void Graphics::frameEnd() {
     _driver->endScene();
 
-    _isDone = !(_device->run());
+    //_isDone = !(_device->run());
 
     return;
 }

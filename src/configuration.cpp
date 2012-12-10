@@ -1,6 +1,6 @@
 #include "configuration.h"
-
 #include "evt_reciever.h"
+#include "logger.h"
 
 
 bool Config::init() {
@@ -21,7 +21,7 @@ bool Config::reset() {
     params.EventReceiver = new EngineEventReceiver();
     _irrDevice = irr::createDeviceEx(params);
     if (_irrDevice == NULL) {
-        // TODO Log() errors
+    	Logger::error("Creation graphics device failed");
         return false;
     }
 
@@ -30,7 +30,8 @@ bool Config::reset() {
 
 
 void Config::close() {
-	_irrDevice->drop();
+	_irrDevice->closeDevice();
+	//_irrDevice->drop();
     return;
 }
 

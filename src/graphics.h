@@ -22,7 +22,9 @@ class Graphics : public Singleton<Graphics> {
     void frameBegin();
     void frameEnd();
 
-    bool isDone() const {return _isDone;}
+    //bool isDone() const {return _isDone;}
+    bool isDone() const {return !_device->run();}
+
 
     irr::IrrlichtDevice* getDevice() const { return _device; }
     
