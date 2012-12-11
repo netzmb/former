@@ -3,15 +3,13 @@
 //
 
 #include "graphics.h"
+#include "interface.h"
 
 
 bool Graphics::init() {
 
     //_isDone = false;
     _frameColor.set(255,0,0,255); // blue
-
-
-    // TODO move device params to Config
     _device = Config::instance().getIrrDevice();
 
     // TODO put CMake project name and version to header
@@ -40,6 +38,7 @@ void Graphics::frameBegin() {
 
 
 void Graphics::frameEnd() {
+	Interface::instance().updateMouse();
     _driver->endScene();
 
     //_isDone = !(_device->run());

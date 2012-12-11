@@ -18,11 +18,6 @@ class Singleton {
 
         return *_instance;
     }
-
-//    protected:
-//    Singleton();
-
-    private:
 };
 
 #endif /* _SINGLETON_H_ */

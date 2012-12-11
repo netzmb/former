@@ -25,7 +25,7 @@ bool Logger::init() {
 	_logFile = fs->createAndWriteFile("former.log");
 
 	if (_logFile == NULL)
-		warning("Logger::init() failed to open [%s]", logPath.c_str());
+		warning("Logger::init() failed to open log file: %s", logPath.c_str());
 
 	info("Logger::init() logger initialized");
 
@@ -88,7 +88,7 @@ void Logger::error(const char* format, ...) {
 	vsprintf(msgBuffer, format, argList);
 	va_end(argList);
 
-	_irrLogger->log(msgBuffer, irr::ELL_WARNING);
+	_irrLogger->log(msgBuffer, irr::ELL_ERROR);
 	return;
 }
 

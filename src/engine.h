@@ -18,6 +18,8 @@ class Engine : public Singleton<Engine> {
 
     private:
     static void sysSignalHandler(int sig_num=0);
+
+    void initService(bool initSuccess);
     bool _isDone;
 };
 

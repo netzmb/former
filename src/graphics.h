@@ -35,7 +35,7 @@ class Graphics : public Singleton<Graphics> {
     irr::scene::ISceneManager* _scenemgr;
     irr::video::SColor _frameColor;        // 
 
-    bool _isDone;
+    //bool _isDone;
 
     
 };
