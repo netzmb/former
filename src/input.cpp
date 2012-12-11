@@ -37,7 +37,6 @@ bool EngineEventReceiver::OnEvent(const irr::SEvent& event) {
 		switch(event.MouseInput.Event) {
 		case irr::EMIE_MOUSE_MOVED:
 			Input::instance().setMouse(event.MouseInput.X, event.MouseInput.Y);
-			Logger::info("Moved");
 			break;
 		default:
 			break;

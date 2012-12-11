@@ -48,9 +48,9 @@ void Engine::loop() {
     while (!isDone()) {
         StateManager::instance().update();
         Graphics::instance().frameBegin();
+        Interface::instance().update();
         Graphics::instance().frameEnd();
         Scripting::instance().update();
-        Interface::instance().update();
         // FIXME
         _isDone = Graphics::instance().isDone();
     }

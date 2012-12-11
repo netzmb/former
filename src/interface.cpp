@@ -50,12 +50,21 @@ bool Interface::init() {
     _guiTex[GUITEX_MOUSE_CURSOR] = loadTex("textures/gui/mouse_cursor.png");
     _guiTex[GUITEX_MINI_LOGO] = loadTex("textures/gui/logo_mini.png");
 
+    // hide default mouse cursor
+    _device->getCursorControl()->setVisible(false);
+
+
     return true;
 }
 
 
 void Interface::update() {
-    return;
+
+    // FIXME test
+    draw2dImage("textures/collision-shape.png");
+    updateMouse();
+
+	return;
 }
 
 
@@ -74,7 +83,11 @@ void Interface::updateMouse() {
 		return;
 
 	_driver->draw2DImage(_guiTex[GUITEX_MOUSE_CURSOR],
-			Input::instance().getMousePos());
+			Input::instance().getMousePos(),
+			getTexRect(_guiTex[GUITEX_MOUSE_CURSOR]),	// texture size rectangle
+			0,		// clip rectangle
+			irr::video::SColor(255,255,255,255),		// color
+			true);	//use alpha-channel
 
 	return;
 }
@@ -91,6 +104,34 @@ irr::video::ITexture* Interface::loadTex(const irr::core::stringc& texPath) {
 	return texture;
 }
 
+
+void Interface::fadeOutScreen(irr::u32 timeout) {
+	//_driver->draw2DImage()
+	return;
+}
+
+
+void Interface::draw2dImage(const stringc& texPath, const vector2di& position) {
+	irr::video::ITexture* imageTex = loadTex(texPath);
+
+	_driver->draw2DImage(imageTex,
+			position,
+			getTexRect(imageTex),	// texture size rectangle
+			0,		// clip rectangle
+			irr::video::SColor(255,255,255,255),		// color
+			true);	//use alpha-channel
+
+	return;
+}
+
+
+recti Interface::getTexRect(const ITexture* texture) {
+
+	irr::core::dimension2du texSize = texture->getOriginalSize();
+	//irr::core::recti texRect(0, 0, texSize.Width, texSize.Height);
+
+	return irr::core::recti(0, 0, texSize.Width, texSize.Height);
+}
 
 
 

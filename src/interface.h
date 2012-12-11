@@ -12,6 +12,11 @@
 
 #include <irrlicht.h>
 
+using irr::core::stringc;
+using irr::core::vector2di;
+using irr::core::recti;
+using irr::video::ITexture;
+
 
 class Interface : public Singleton<Interface> {
     public:
@@ -31,10 +36,15 @@ class Interface : public Singleton<Interface> {
     void close();
 
     irr::gui::IGUIEnvironment* getGUI() const { return _device->getGUIEnvironment(); }
-    irr::video::ITexture* loadTex(const irr::core::stringc& texPath);
+    irr::video::ITexture* loadTex(const stringc& texPath);
     void updateMouse();
     bool showMouse() { return _showMouse; }
     void showMouse(bool show) { _showMouse = show; }
+
+    void fadeOutScreen(irr::u32 timeout);
+    void draw2dImage(const stringc& texPath, const vector2di& position=vector2di());
+
+    recti getTexRect(const ITexture* texture);
 
 
 

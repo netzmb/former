@@ -38,7 +38,7 @@ void Graphics::frameBegin() {
 
 
 void Graphics::frameEnd() {
-	Interface::instance().updateMouse();
+	//Interface::instance().updateMouse();
     _driver->endScene();
 
     //_isDone = !(_device->run());
