@@ -39,6 +39,8 @@ bool EngineEventReceiver::OnEvent(const irr::SEvent& event) {
 			Input::instance().setMouse(event.MouseInput.X, event.MouseInput.Y);
 			Logger::info("Moved");
 			break;
+		default:
+			break;
 		}
 	}
 
