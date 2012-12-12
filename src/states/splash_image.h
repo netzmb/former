@@ -9,17 +9,12 @@
 #include <irrlicht.h>
 
 using irr::io::path;
+using irr::video::SColor;
 
 class SplashImageState : public State {
 public:
-	struct Template {
-		path imageFile;
-		path audioFile;
-		irr::u32 timeout;
-		Template() : timeout(0){}
-	};
 
-	SplashImageState() : _timeout(300), _startTime(0) {};
+	SplashImageState();
 	~SplashImageState() {};
 
 	bool init();
@@ -29,12 +24,16 @@ public:
     void setImagePath(const char* path) { _imagePath = path; }
     void setAudioPath(const char* path) { _audioPath = path; }
     void setTimeout(irr::u32 timeout) { _timeout = timeout; }
+    void setBackColor(SColor color) { _backColor = color; }
 
 private:
     irr::io::path _imagePath;
     irr::io::path _audioPath;
     irr::u32 _timeout;
+    SColor _backColor;
+
     irr::u32 _startTime;
+    SColor _oldFrameColor;
 };
 
 #endif /* _SPLASH_IMAGE_H_ */

@@ -11,6 +11,8 @@ bool Config::init() {
     _irrDevice = NULL;
     _irrTimer = NULL;
 
+    _resolution.set(640, 480);
+
     bool resetResult = reset();
     return resetResult;
 }
@@ -25,6 +27,7 @@ bool Config::reset() {
     //params.DriverType = irr::video::EDT_NULL;
     //params.EventReceiver = new EngineEventReceiver();
     params.EventReceiver = Input::instance().getEventReciever();
+    params.WindowSize = _resolution;
 
     _irrDevice = irr::createDeviceEx(params);
     if (_irrDevice == NULL) {
