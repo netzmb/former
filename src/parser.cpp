@@ -112,9 +112,6 @@ Json::Value Parser::getJsonRoot(const stringc& jsonFile) {
 bool Parser::parseStates(StateManager* stManager) {
 	Logger::info("StateManager parse states");
 
-
-	//Json::Value root = getJsonRoot("init.json");
-
 	Json::Value root = getJsonRoot("init.json");
 
 	const Json::Value states = root["states"];
@@ -137,6 +134,8 @@ bool Parser::parseStates(StateManager* stManager) {
 			state->setImagePath(states[i]["file"].asCString());
 			state->setAudioPath(states[i]["audio"].asCString());
 			state->setTimeout(states[i]["timeout"].asUInt());
+			state->setBackColor(parseColor(states[i]["color"]));
+
 
 			Logger::info("\tfile: %s audio: %s timeout: %d",
 					states[i]["file"].asCString(),
@@ -145,15 +144,21 @@ bool Parser::parseStates(StateManager* stManager) {
 
 			state->init();
 		}
-
-
-
-		//stManager->add()
 	}
-
-
-
 
 	Logger::info("StateManager parse states end");
 	return true;
 }
+
+
+irr::video::SColor Parser::parseColor(const Json::Value& root) {
+	irr::video::SColor color;
+
+	color.set(root[0].asUInt(),	// a
+			  root[1].asUInt(),	// r
+			  root[2].asUInt(), // g
+			  root[3].asUInt());// b
+
+	return color;
+}
+

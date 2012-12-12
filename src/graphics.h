@@ -25,6 +25,10 @@ class Graphics : public Singleton<Graphics> {
     //bool isDone() const {return _isDone;}
     bool isDone() const {return !_device->run();}
 
+    void setFrameColor(irr::video::SColor& color) { _frameColor = color; }
+    irr::video::SColor& getFrameColor() { return _frameColor; } const
+
+
 
     irr::IrrlichtDevice* getDevice() const { return _device; }
     

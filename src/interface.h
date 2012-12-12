@@ -28,6 +28,13 @@ class Interface : public Singleton<Interface> {
 		GUITEX_COUNT
 	};
 
+	enum texScreenAlign {
+		ALIGN_CENTER,
+		ALIGN_TOP,
+		ALIGN_BOTTOM,
+		ALIGN_COUNT,
+	};
+
     Interface();
 
     bool init();
@@ -42,7 +49,10 @@ class Interface : public Singleton<Interface> {
     void showMouse(bool show) { _showMouse = show; }
 
     void fadeOutScreen(irr::u32 timeout);
+    ITexture* draw2dImage(ITexture* imageTex, const vector2di& position=vector2di());
     ITexture* draw2dImage(const stringc& texPath, const vector2di& position=vector2di());
+    ITexture* draw2dImage(const stringc& texPath, texScreenAlign align);
+
 
     recti getTexRect(const ITexture* texture);
 

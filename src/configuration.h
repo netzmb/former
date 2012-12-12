@@ -21,10 +21,15 @@ class Config : public Singleton<Config> {
     irr::io::IFileSystem* getFS() { return _irrDevice->getFileSystem(); }
     irr::u32 getTime() {return _irrTimer->getTime();}
     
+
+    irr::core::dimension2du getResolution() const {return _resolution;}
+
+
     private:
 
     irr::IrrlichtDevice* _irrDevice;
     irr::ITimer* _irrTimer;
+    irr::core::dimension2du _resolution;
 };
 
 #endif /* _CONFIG_H_ */

@@ -93,6 +93,7 @@ void Interface::updateMouse() {
 
 irr::video::ITexture* Interface::loadTex(const irr::core::stringc& texPath) {
 	irr::video::ITexture* texture = _driver->getTexture(texPath);
+
 	if (texture == NULL) {
 		Logger::warning("texture load failed: %s", texPath.c_str());
 		texture = _stubTex;
@@ -108,8 +109,7 @@ void Interface::fadeOutScreen(irr::u32 timeout) {
 }
 
 
-ITexture* Interface::draw2dImage(const stringc& texPath, const vector2di& position) {
-	irr::video::ITexture* imageTex = loadTex(texPath);
+ITexture* Interface::draw2dImage(ITexture* imageTex, const vector2di& position) {
 
 	_driver->draw2DImage(imageTex,
 			position,
@@ -120,6 +120,47 @@ ITexture* Interface::draw2dImage(const stringc& texPath, const vector2di& positi
 
 	return imageTex;
 }
+
+
+ITexture* Interface::draw2dImage(const stringc& texPath, const vector2di& position) {
+	irr::video::ITexture* imageTex = loadTex(texPath);
+	draw2dImage(imageTex, position);
+	return imageTex;
+}
+
+
+ITexture* Interface::draw2dImage(const stringc& texPath, texScreenAlign align) {
+	irr::video::ITexture* imageTex = loadTex(texPath);
+
+
+
+	irr::core::dimension2du screenSizeDim = Config::instance().getResolution();
+	vector2di screenSize(screenSizeDim.Width, screenSizeDim.Height);
+
+	vector2di texSize(imageTex->getSize().Width, imageTex->getSize().Height);
+
+	// get center of screen
+	vector2di screenCenter(screenSize.X/2,screenSize.Y/2);
+	// get center of texture
+	vector2di texCenter(texSize.X/2, texSize.Y/2);
+
+	vector2di position;
+
+
+
+	switch (align) {
+	case ALIGN_CENTER:
+		position.set(screenCenter.X - texCenter.X, screenCenter.Y - texCenter.Y);
+		break;
+	default:
+		break;
+	}
+
+	draw2dImage(imageTex, position);
+
+	return imageTex;
+}
+
 
 
 recti Interface::getTexRect(const ITexture* texture) {

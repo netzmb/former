@@ -23,6 +23,7 @@ public:
 	static bool parseStates(StateManager* stManager);
 
 	static Json::Value getJsonRoot(const stringc& jsonFile);
+	static irr::video::SColor parseColor(const Json::Value& root);
 
 
 //private:
