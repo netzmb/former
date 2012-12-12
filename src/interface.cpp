@@ -60,8 +60,6 @@ bool Interface::init() {
 
 void Interface::update() {
 
-    // FIXME test
-    draw2dImage("textures/collision-shape.png");
     updateMouse();
 
 	return;
@@ -97,7 +95,6 @@ irr::video::ITexture* Interface::loadTex(const irr::core::stringc& texPath) {
 	irr::video::ITexture* texture = _driver->getTexture(texPath);
 	if (texture == NULL) {
 		Logger::warning("texture load failed: %s", texPath.c_str());
-		//texture = _driver->getTexture("textures/stub.png");
 		texture = _stubTex;
 	}
 
@@ -111,7 +108,7 @@ void Interface::fadeOutScreen(irr::u32 timeout) {
 }
 
 
-void Interface::draw2dImage(const stringc& texPath, const vector2di& position) {
+ITexture* Interface::draw2dImage(const stringc& texPath, const vector2di& position) {
 	irr::video::ITexture* imageTex = loadTex(texPath);
 
 	_driver->draw2DImage(imageTex,
@@ -121,15 +118,12 @@ void Interface::draw2dImage(const stringc& texPath, const vector2di& position) {
 			irr::video::SColor(255,255,255,255),		// color
 			true);	//use alpha-channel
 
-	return;
+	return imageTex;
 }
 
 
 recti Interface::getTexRect(const ITexture* texture) {
-
 	irr::core::dimension2du texSize = texture->getOriginalSize();
-	//irr::core::recti texRect(0, 0, texSize.Width, texSize.Height);
-
 	return irr::core::recti(0, 0, texSize.Width, texSize.Height);
 }
 

@@ -1,8 +1,0 @@
-{
-"states" : [
-    {"type" : "splash_image", "file" : "logo.png", "audio" : "logo.ogg", "timeout" : 2},
-    {"type" : "splash_video", "file" : "intro.ogm"},
-    {"type" : "gameflow"}
-    ]
-}
-

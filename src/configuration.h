@@ -19,10 +19,12 @@ class Config : public Singleton<Config> {
 
     irr::IrrlichtDevice* getIrrDevice() { return _irrDevice; }
     irr::io::IFileSystem* getFS() { return _irrDevice->getFileSystem(); }
+    irr::u32 getTime() {return _irrTimer->getTime();}
     
     private:
 
     irr::IrrlichtDevice* _irrDevice;
+    irr::ITimer* _irrTimer;
 };
 
 #endif /* _CONFIG_H_ */

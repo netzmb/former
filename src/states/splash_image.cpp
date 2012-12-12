@@ -4,23 +4,35 @@
 
 
 #include "splash_image.h"
-#include "../configuration.h"
-#include "../graphics.h"
 #include "../interface.h"
+#include "../configuration.h"
+#include "../logger.h"
 
+bool SplashImageState::init() {
+	Logger::info("splash init()");;
+	_startTime = Config::instance().getTime();
 
-bool SplashImage::init() {
-
-
-
+	//Interface::instance().clear();
+	changeStatus(SSTATUS_EXECUTING);
     return true;
 }
 
-void SplashImage::update() {
+void SplashImageState::update() {
+	if (Config::instance().getTime() - _startTime > _timeout) {
+		close();
+		return;
+	}
+
+	//Logger::info("splash time: %d", Config::instance().getTime() - _startTime);
+
+	Interface::instance().draw2dImage(_imagePath);
     return;
 }
 
-void SplashImage::close() {
+
+void SplashImageState::close() {
+	Logger::info("splash close()");
+	changeStatus(SSTATUS_DONE);
     return;
 }
 

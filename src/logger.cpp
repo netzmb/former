@@ -18,6 +18,7 @@ irr::io::IWriteFile* Logger::_logFile = NULL;
 bool Logger::init() {
 
 	_irrLogger = (Config::instance().getIrrDevice())->getLogger();
+	_irrLogger->setLogLevel(irr::ELL_INFORMATION);
 
     // FIXME get log path from Config, CMake project name as log name
 	irr::io::path logPath("former.log");

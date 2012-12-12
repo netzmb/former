@@ -26,13 +26,13 @@ bool Engine::init() {
     // init subsystems
     //
     
-    initService(Input::instance().init());
-    initService(Config::instance().init());
-    initService(Logger::instance().init());
-    initService(Graphics::instance().init());
-    initService(StateManager::instance().init());
-    initService(Scripting::instance().init());
-    initService(Interface::instance().init());
+    initSubSystem(Input::instance().init());
+    initSubSystem(Config::instance().init());
+    initSubSystem(Logger::instance().init());
+    initSubSystem(Graphics::instance().init());
+    initSubSystem(Scripting::instance().init());
+    initSubSystem(Interface::instance().init());
+    initSubSystem(StateManager::instance().init());
 
 
 
@@ -46,9 +46,9 @@ bool Engine::init() {
 void Engine::loop() {
 
     while (!isDone()) {
-        StateManager::instance().update();
         Graphics::instance().frameBegin();
         Interface::instance().update();
+    	StateManager::instance().update();
         Graphics::instance().frameEnd();
         Scripting::instance().update();
         // FIXME
@@ -60,9 +60,9 @@ void Engine::loop() {
 
 
 void Engine::close() {
+    StateManager::instance().close();
 	Interface::instance().close();
     Scripting::instance().close();
-    StateManager::instance().close();
     Graphics::instance().close();
     Logger::instance().close();
     Config::instance().close();
@@ -83,11 +83,11 @@ void Engine::sysSignalHandler(int sigNum) {
 
 
 
-void Engine::initService(bool initSuccess) {
+void Engine::initSubSystem(bool initSuccess) {
 	if (initSuccess)
 		return;
 
-	Logger::error("Singleton loading failed, exiting");
+	Logger::error("Subsystem loading failed, exiting");
 	Engine::instance().close();
 	exit(EXIT_FAILURE);
 	return;

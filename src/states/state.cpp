@@ -8,8 +8,9 @@ State::State()
 }
 
 
+
 bool State::init() {
-    return;
+    return true;
 }
 
 void State::update() {
@@ -24,3 +25,5 @@ void State::reset() {
 void State::close() {
     return;
 }
+
+

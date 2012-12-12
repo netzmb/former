@@ -5,6 +5,8 @@
 #ifndef _STATEMGR_H_
 #define _STATEMGR_H_
 
+#include <queue> // STL queue
+
 #include <irrlicht.h>
 
 #include "states/state.h"
@@ -13,23 +15,31 @@
 
 class StateManager : public Singleton<StateManager> {
     public:
+
+	enum StateType {
+		STATE_TYPE_SPLASH_IMAGE,
+		STATE_TYPE_SPLASH_VIDEO,
+		STATE_TYPE_GAME,
+		STATE_TYPE_COUNT
+	};
+
     
     bool init();
     void update();
     void close();
 
-    void add(State* state);
+    State* addState(StateType stateType);
     
     void setDone(bool done) { _isDone = done; };
     bool isDone() const { return _isDone; };
 
     private:
-    //std::list<State> _states;
-    irr::core::list<State*> _states;
+    //irr::core::list<State*> _states;
+    std::queue<State*> _states;
+    State* _currentState;
     bool _isDone;
 };
 
-//typedef SingletonClass<StateManager> StateMgr;
 
 #endif /* _STATEMGR_H_ */
 

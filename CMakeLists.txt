@@ -71,6 +71,8 @@ include_directories(
 
 
 aux_source_directory(src former_SRCS)
+aux_source_directory(src/states former_SRCS)
+
 add_executable(${PROJECT_NAME} ${former_SRCS})
 
 

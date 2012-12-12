@@ -9,6 +9,7 @@
 
 bool Config::init() {
     _irrDevice = NULL;
+    _irrTimer = NULL;
 
     bool resetResult = reset();
     return resetResult;
@@ -41,6 +42,10 @@ bool Config::reset() {
     	//Logger::error("adding resources pack failed");
     	return false;
     }
+
+    // initialize engine internal timer
+    _irrTimer = _irrDevice->getTimer();
+
 
     return true;
 }

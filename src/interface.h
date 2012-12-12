@@ -42,7 +42,7 @@ class Interface : public Singleton<Interface> {
     void showMouse(bool show) { _showMouse = show; }
 
     void fadeOutScreen(irr::u32 timeout);
-    void draw2dImage(const stringc& texPath, const vector2di& position=vector2di());
+    ITexture* draw2dImage(const stringc& texPath, const vector2di& position=vector2di());
 
     recti getTexRect(const ITexture* texture);
 
