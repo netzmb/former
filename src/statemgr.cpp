@@ -11,7 +11,7 @@
 //#include "states/video.h"
 #include "states/splash_image.h"
 #include "states/splash_video.h"
-//#include "states/gameflow.h"
+#include "states/gameflow.h"
 
 using namespace irr;
 
@@ -47,25 +47,6 @@ void StateManager::update() {
 		break;
 	}
 
-
-
-
-	/*
-	for (core::list<State*>::Iterator i = _states.begin(); i != _states.end(); ++i) {
-
-    	switch ((*i)->getStatus()) {
-    	case State::SSTATUS_EXECUTING:
-    		(*i)->update();
-    		break;
-    	case State::SSTATUS_DONE:
-    		//delete *i;
-    		//i = _states.erase(i);
-    		break;
-    	default:
-    		break;
-    	}
-    }*/
-
     return;
 }
 
@@ -76,26 +57,31 @@ void StateManager::close() {
 		delete _states.front();
 		_states.pop();
 	}
-    /*for (core::list<State*>::Iterator i = _states.begin();
-         i != _states.end(); i++) {
-        (*i)->close();
-        delete (*i);
-    }*/
     return;
 }
 
 
 State* StateManager::addState(StateType stateType) {
+
 	State* newState;
 	switch (stateType) {
 	case STATE_TYPE_SPLASH_IMAGE:
 		newState = new SplashImageState;
 		break;
+
+	case STATE_TYPE_SPLASH_VIDEO:
+		newState = new SplashVideoState;
+		break;
+
+	case STATE_TYPE_GAMEFLOW:
+		newState = new GameflowState;
+		break;
+
 	default:
 		Logger::warning("StateManager: unsupported state %d", stateType);
 		break;
 	}
-    //_states.push_back(newState);
+
 	_states.push(newState);
     return newState;
 }

@@ -11,7 +11,7 @@ bool Config::init() {
     _irrDevice = NULL;
     _irrTimer = NULL;
 
-    _resolution.set(640, 480);
+    _resolution.set(800, 600);
 
     bool resetResult = reset();
     return resetResult;

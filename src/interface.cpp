@@ -15,7 +15,7 @@ using irr::core::position2di;
 using irr::core::recti;
 
 Interface::Interface() {
-	_stubPath = "textures/stub.png";
+	_stubPath = "textures/system/stub.png";
 	_stubTex = NULL;
 	_device = NULL;
 	_driver = NULL;

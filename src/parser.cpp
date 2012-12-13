@@ -17,6 +17,8 @@
 
 
 #include "states/splash_image.h"
+#include "states/splash_video.h"
+#include "states/gameflow.h"
 
 Parser::Parser() {
 
@@ -143,7 +145,59 @@ bool Parser::parseStates(StateManager* stManager) {
 					states[i]["timeout"].asUInt());
 
 			state->init();
-		}
+		} // splash_image state end
+
+
+
+		//
+		// process splash_video state
+		//
+		if (stateName.equals_ignore_case("splash_video")) {
+			SplashVideoState* state = static_cast<SplashVideoState*>(
+					stManager->addState(StateManager::STATE_TYPE_SPLASH_VIDEO));
+
+			// TODO new common init(<some dict>) method for all derived "State"
+
+			state->setVideoPath(states[i]["file"].asCString());
+			state->setBackColor(parseColor(states[i]["color"]));
+
+
+			Logger::info("\tfile: %s", states[i]["file"].asCString());
+
+			state->init();
+		} // splash_image state end
+
+
+		//
+		// process splash_video state
+		//
+		if (stateName.equals_ignore_case("splash_video")) {
+			SplashVideoState* state = static_cast<SplashVideoState*>(
+					stManager->addState(StateManager::STATE_TYPE_SPLASH_VIDEO));
+
+			// TODO new common init(<some dict>) method for all derived "State"
+
+			state->setVideoPath(states[i]["file"].asCString());
+			state->setBackColor(parseColor(states[i]["color"]));
+
+
+			Logger::info("\tfile: %s", states[i]["file"].asCString());
+
+			state->init();
+		} // splash_image state end
+
+
+		//
+		// process gameflow state
+		//
+		if (stateName.equals_ignore_case("gameflow")) {
+			GameflowState* state = static_cast<GameflowState*>(
+					stManager->addState(StateManager::STATE_TYPE_GAMEFLOW));
+
+			//Logger::info("\tfile: %s", states[i]["file"].asCString());
+
+			state->init();
+		} // splash_image state end
 	}
 
 	Logger::info("StateManager parse states end");

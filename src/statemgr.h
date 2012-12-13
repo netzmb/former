@@ -19,7 +19,7 @@ class StateManager : public Singleton<StateManager> {
 	enum StateType {
 		STATE_TYPE_SPLASH_IMAGE,
 		STATE_TYPE_SPLASH_VIDEO,
-		STATE_TYPE_GAME,
+		STATE_TYPE_GAMEFLOW,
 		STATE_TYPE_COUNT
 	};
 

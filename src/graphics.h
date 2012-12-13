@@ -31,6 +31,7 @@ class Graphics : public Singleton<Graphics> {
 
 
     irr::IrrlichtDevice* getDevice() const { return _device; }
+    irr::scene::ISceneManager* getSceneManager() const { return _scenemgr; }
     
     private:
     

@@ -31,7 +31,7 @@ void Graphics::frameBegin() {
 
     // TODO drawScene check
 
-    _scenemgr->drawAll();
+    //_scenemgr->drawAll();
 
     return;
 }
