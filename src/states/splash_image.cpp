@@ -12,6 +12,7 @@
 
 SplashImageState::SplashImageState() :
 	_timeout(300),
+	_splashTexture(NULL),
 	_startTime(0) {
 
 	_backColor = Graphics::instance().getFrameColor();
@@ -45,7 +46,7 @@ void SplashImageState::update() {
 	}
 
 	//Logger::info("splash time: %d", Config::instance().getTime() - _startTime);
-	Interface::instance().draw2dImage(_imagePath, Interface::ALIGN_CENTER);
+	_splashTexture = Interface::instance().draw2dImage(_imagePath, Interface::ALIGN_CENTER);
 
 
     return;
@@ -57,6 +58,10 @@ void SplashImageState::close() {
 	if (_oldFrameColor != _backColor) {
 		Graphics::instance().setFrameColor(_oldFrameColor);
 	}
+
+	// drop unused texture
+	if (_splashTexture)
+		_splashTexture->drop();
 
 
 	changeStatus(SSTATUS_DONE);

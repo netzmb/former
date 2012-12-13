@@ -32,6 +32,7 @@ private:
     irr::u32 _timeout;
     SColor _backColor;
 
+    irr::video::ITexture* _splashTexture;
     irr::u32 _startTime;
     SColor _oldFrameColor;
 };

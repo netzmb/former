@@ -146,8 +146,6 @@ ITexture* Interface::draw2dImage(const stringc& texPath, texScreenAlign align) {
 
 	vector2di position;
 
-
-
 	switch (align) {
 	case ALIGN_CENTER:
 		position.set(screenCenter.X - texCenter.X, screenCenter.Y - texCenter.Y);
