@@ -32,7 +32,7 @@ public:
 
 	Stage* createStage(const stringc& stageName);
 	//Stage* setMainStage(const stringc& stageName);
-	Stage* setMainStage(Stage* stage) {_mainStage = stage; return _mainStage; }
+	Stage* setMainStage(Stage* stage);
 
 
 private:

@@ -11,6 +11,7 @@
 #include <irrlicht.h>
 
 using irr::scene::ISceneManager;
+using irr::scene::ISceneNode;
 using irr::core::stringc;
 
 class Stage {
@@ -22,6 +23,7 @@ public:
 
 	// TODO fix stage saving name and path
 	void dumpStage() {_sceneMgr->saveScene(_stageName + ".stagedump.irr");}
+	void setAsMainStage();
 
 private:
 	ISceneManager* _sceneMgr;	// local scene manager

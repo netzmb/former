@@ -50,3 +50,9 @@ Stage* StageManager::createStage(const stringc& stageName) {
 	return stage;
 }
 
+
+Stage* StageManager::setMainStage(Stage* stage) {
+	_mainStage = stage;
+	_mainStage->setAsMainStage();
+	return _mainStage;
+}
