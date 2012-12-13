@@ -1,6 +1,11 @@
 {
 "states" : [
-    {"type" : "splash_image", "file" : "textures/logo-splash.png", "audio" : "sound/logo.ogg", "timeout" : 3000, "color": [0,0,0,0]},
+    {"type" : "splash_image",
+     "file" : "textures/logo-splash.png",
+     "audio" : "sound/logo.ogg",
+     "timeout" : 3000,
+     "color": [0,0,0,0]},
+
     {"type" : "splash_video", "file" : "intro.ogm"},
     {"type" : "gameflow"}
     ]
