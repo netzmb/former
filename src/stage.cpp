@@ -21,13 +21,13 @@ Stage::Stage(const irr::core::stringc& stageName)
 	_fileSystem = Config::instance().getFS();
 
 	irr::io::path stageDir("stages/");
-	irr::io::path stagePath(stageDir + stageName + "/Scene.irr");
+	_stagePath = path(stageDir + stageName);
 
 	Logger::info("Stage begin: %s", _stageName.c_str());
 
 	// FIXME dirty hack, fix paths to irrmesh in .irr scene by custom serializer
-	SceneSerializer _serializer(_sceneMgr, _fileSystem->getFileDir(stagePath));
-	_sceneMgr->loadScene(stagePath, &_serializer);
+	SceneSerializer _serializer(_sceneMgr, _stagePath);
+	_sceneMgr->loadScene(_stagePath + path("/Scene.irr"), &_serializer);
 
 
 	// FIXME testing stage
