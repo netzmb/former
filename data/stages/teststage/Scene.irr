@@ -1,0 +1,120 @@
+<?xml version="1.0"?>
+<!-- Created 12/14/2012 13:04 by irrb v0.4 - "Irrlicht/Blender Exporter" -->
+<irr_scene>
+   <attributes>
+      <string name="Name" value="root"/>
+      <int name="Id" value="-1"/>
+      <vector3d name="Position" value="0.000000, 0.000000, 0.000000"/>
+      <vector3d name="Rotation" value="0.000000, 0.000000, 0.000000"/>
+      <vector3d name="Scale" value="1.000000, 1.000000, 1.000000"/>
+      <colorf name="AmbientLight" value="0.000000, 0.000000, 0.000000 1.000000"/>
+      <bool name="AutomaticCulling" value="true"/>
+      <bool name="DebugDataVisible" value="false"/>
+      <bool name="IsDebugObject" value="false"/>
+      <bool name="Visible" value="true"/>
+   </attributes>
+   <userData>
+      <attributes>
+         <string name="Exporter" value="irrb"/>
+         <string name="Exporter.Version" value="0.4"/>
+         <float name="Gravity" value="-9.800000"/>
+         <int name="OccludesLight" value="0"/>
+         <int name="Physics.Enabled" value="1"/>
+      </attributes>
+   </userData>
+   <node type="mesh">
+      <attributes>
+         <string name="Name" value="owen"/>
+         <int name="Id" value="-1"/>
+         <vector3d name="Position" value="1.655529, 0.957829, 0.500000"/>
+         <vector3d name="Rotation" value="0.000000, -0.000000, 0.000000"/>
+         <vector3d name="Scale" value="1.000000, 1.000000, 1.000000"/>
+         <bool name="Visible" value="true"/>
+         <enum name="AutomaticCulling" value="1"/>
+         <bool name="DebugDataVisible" value="false"/>
+         <bool name="IsDebugObject" value="false"/>
+         <bool name="ReadOnlyMaterials" value="false"/>
+         <string name="Mesh" value="mdl/owen.irrmesh"/>
+      </attributes>
+      <userData>
+         <attributes>
+            <string name="Physics.BodyType" value="static"/>
+            <string name="Physics.BodyShape" value="concavemesh"/>
+            <bool name="Physics.Visible" value="true"/>
+         </attributes>
+      </userData>
+   </node>
+   <node type="mesh">
+      <attributes>
+         <string name="Name" value="ground"/>
+         <int name="Id" value="-1"/>
+         <vector3d name="Position" value="-0.001618, 1.366994, -0.000130"/>
+         <vector3d name="Rotation" value="0.000000, -0.000000, 0.000000"/>
+         <vector3d name="Scale" value="1.000000, 1.000000, 1.000000"/>
+         <bool name="Visible" value="true"/>
+         <enum name="AutomaticCulling" value="1"/>
+         <bool name="DebugDataVisible" value="false"/>
+         <bool name="IsDebugObject" value="false"/>
+         <bool name="ReadOnlyMaterials" value="false"/>
+         <string name="Mesh" value="mdl/ground.irrmesh"/>
+      </attributes>
+      <userData>
+         <attributes>
+            <string name="Physics.BodyType" value="static"/>
+            <string name="Physics.BodyShape" value="concavemesh"/>
+            <bool name="Physics.Visible" value="true"/>
+            <float name="Physics.Friction" value="0.50"/>
+            <float name="Physics.Restitution" value="0.00"/>
+         </attributes>
+      </userData>
+   </node>
+   <node type="light">
+      <attributes>
+         <string name="Name" value="Lamp"/>
+         <int name="Id" value="-1"/>
+         <vector3d name="Position" value="4.076245, 5.903862, 1.005454"/>
+         <vector3d name="Rotation" value="42.466408, -107.220764, 10.743672"/>
+         <vector3d name="Scale" value="1.000000, 1.000000, 1.000000"/>
+         <bool name="Visible" value="true"/>
+         <enum name="AutomaticCulling" value="frustum_box"/>
+         <bool name="DebugDataVisible" value="false"/>
+         <bool name="IsDebugObject" value="false"/>
+         <bool name="ReadOnlyMaterials" value="false"/>
+         <enum name="LightType" value="Point"/>
+         <colorf name="AmbientColor" value="0.000000,0.000000, 0.000000, 1.000000"/>
+         <colorf name="DiffuseColor" value="1.000000, 1.000000, 1.000000 1.000000"/>
+         <colorf name="SpecularColor" value="1.000000,1.000000, 1.000000, 1.000000"/>
+         <vector3d name="Attenuation" value="0.000000 0.500000 0.000000"/>
+         <float name="Radius" value="60.00"/>
+         <bool name="CastShadows" value="true"/>
+      </attributes>
+      <userData>
+         <attributes>
+         </attributes>
+      </userData>
+   </node>
+   <node type="camera">
+      <attributes>
+         <string name="Name" value="Camera"/>
+         <int name="Id" value="-1"/>
+         <vector3d name="Position" value="7.481132, 5.343665, -6.507640"/>
+         <vector3d name="Rotation" value="27.098162, -46.688389, -0.903519"/>
+         <vector3d name="Scale" value="1.000000, 1.000000, 1.000000"/>
+         <bool name="Visible" value="true"/>
+         <enum name="AutomaticCulling" value="frustum_box"/>
+         <bool name="DebugDataVisible" value="false"/>
+         <bool name="IsDebugObject" value="false"/>
+         <bool name="ReadOnlyMaterials" value="false"/>
+         <vector3d name="Target" value="0.000000, 0.000000, 0.000000"/>
+         <vector3d name="UpVector" value="0.000000, 1.000000, 0.000000"/>
+         <float name="Fovy" value="0.857556"/>
+         <float name="Aspect" value="1.250000"/>
+         <float name="ZNear" value="0.10"/>
+         <float name="ZFar" value="100.00"/>
+      </attributes>
+      <userData>
+         <attributes>
+         </attributes>
+      </userData>
+   </node>
+</irr_scene>

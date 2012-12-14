@@ -33,6 +33,7 @@ public:
 	Stage* createStage(const stringc& stageName);
 	//Stage* setMainStage(const stringc& stageName);
 	Stage* setMainStage(Stage* stage);
+	Stage* getMainStage() {return _mainStage;}
 
 
 private:

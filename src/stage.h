@@ -27,8 +27,8 @@ public:
 
 private:
 	ISceneManager* _sceneMgr;	// local scene manager
+	irr::io::IFileSystem* _fileSystem;
 	stringc _stageName;
-
 };
 
 #endif /* STAGE_H_ */

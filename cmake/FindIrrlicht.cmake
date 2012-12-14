@@ -13,6 +13,7 @@
 #  For details see the accompanying COPYING-CMAKE-SCRIPTS file.
 #
 
+set(LOCAL_IRR_BASE "/home/moss/src/libs/irrlicht")
 
 if (IRRLICHT_LIBRARIES AND IRRLICHT_INCLUDE_DIRS)
   # in cache already
@@ -22,6 +23,7 @@ else (IRRLICHT_LIBRARIES AND IRRLICHT_INCLUDE_DIRS)
     NAMES
       irrlicht.h
     PATHS
+      ${LOCAL_IRR_BASE}/include
       /usr/include
       /usr/local/include
       /opt/local/include
@@ -33,6 +35,7 @@ else (IRRLICHT_LIBRARIES AND IRRLICHT_INCLUDE_DIRS)
     NAMES
       Irrlicht
     PATHS
+      ${LOCAL_IRR_BASE}/lib/Linux
       /usr/lib
       /usr/local/lib
       /opt/local/lib
