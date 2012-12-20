@@ -5,9 +5,9 @@
 
 #include "../part.h"
 
-class Battery public: Part {
+class Battery : public Part {
   float _capacity;
 
-}
+};
 
 
