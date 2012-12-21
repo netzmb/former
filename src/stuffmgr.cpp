@@ -59,10 +59,10 @@ irr::io::IFileList* StuffManager::getPartDirectories(const irr::io::path& dirPat
 		Logger::info("\t file archive # %d", archIndex);
 
 		// scan files
+
 		const IFileList* files = _fileSystem->getFileArchive(archIndex)->getFileList();
+
 		for (irr::u32 fileIndex=0; fileIndex < files->getFileCount(); ++fileIndex) {
-
-
 
 			if (path("part.json") != files->getFileName(fileIndex))
 				continue;
@@ -71,8 +71,6 @@ irr::io::IFileList* StuffManager::getPartDirectories(const irr::io::path& dirPat
 					archIndex,
 					files->getFullFileName(fileIndex).c_str());
 		}
-		files->drop();
-		files = NULL;
 	}
 
 	return partDirs;
