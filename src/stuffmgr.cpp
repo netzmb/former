@@ -117,6 +117,7 @@ irr::io::IFileList* StuffManager::getPartDirectories(const irr::io::path& dirPat
 Part* StuffManager::getPartPrototype(const path& config) {
 	//Parser parser()
 
+	// TODO add parts - wide part dynamic property adder
 
 	// FIXME
 	//return new Battery(config);
