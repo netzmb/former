@@ -10,6 +10,14 @@
 #include "configuration.h"
 #include "logger.h"
 
+// jsoncpp lib
+#include "json/json.h"
+
+#include "parser.h"
+#include "parts/battery.h"
+
+
+
 
 
 bool StuffManager::init() {
@@ -21,15 +29,26 @@ bool StuffManager::init() {
 	//
 	// load parts
 	//
+	Logger::info("\tscanning game data for parts");
 	IFileList* partDirs = getPartDirectories();
 
 
+	Logger::info("\t loading parts");
+
+
+	for(u32 fileIndex = 0; fileIndex < partDirs->getFileCount(); fileIndex++) {
+
+
+		//Part* part = getPartPrototype(partDirs->getFullFileName(fileIndex));
+		Part* part = getPartPrototype(partDirs->getFullFileName(fileIndex));
+		_parts.push_back(part);
+	}
+
+
+	Logger::info("\t %d parts loaded", partDirs->getFileCount());
+
 	if (partDirs)
 		partDirs->drop();
-
-
-
-	//_parts.push_back();
 
 	return true;
 }
@@ -43,6 +62,17 @@ void StuffManager::update() {
 
 
 void StuffManager::close() {
+	Logger::info("StuffManager::close() begin");
+
+	std::list<Part*>::iterator i=_parts.begin();
+	while (i != _parts.end())
+	{
+		delete (*i);
+		i =_parts.erase(i);
+	}
+
+	Logger::info("StuffManager::close() done");
+
 	return;
 }
 
@@ -52,7 +82,7 @@ irr::io::IFileList* StuffManager::getPartDirectories(const irr::io::path& dirPat
 
 	Logger::info("\t part dirs scan, sources: %d", _fileSystem->getFileArchiveCount());
 
-	IFileList* partDirs = NULL;
+	IFileList* partDirs = _fileSystem->createEmptyFileList(_fileSystem->createFileList()->getPath(), true, false);
 
 	for (irr::u32 archIndex=0; archIndex < _fileSystem->getFileArchiveCount(); ++archIndex) {
 
@@ -64,8 +94,15 @@ irr::io::IFileList* StuffManager::getPartDirectories(const irr::io::path& dirPat
 
 		for (irr::u32 fileIndex=0; fileIndex < files->getFileCount(); ++fileIndex) {
 
-			if (path("part.json") != files->getFileName(fileIndex))
+			if (!files->getFileName(fileIndex).equals_ignore_case("part.json"))
 				continue;
+
+			//_fileSystem->getFileDir(files->getFullFileName(fileIndex))
+			partDirs->addItem(files->getFullFileName(fileIndex),
+					files->getFileOffset(fileIndex),
+					files->getFileSize(fileIndex),
+					false);
+
 
 			Logger::info("\t arch[%d]\t part: %s",
 					archIndex,
@@ -74,4 +111,14 @@ irr::io::IFileList* StuffManager::getPartDirectories(const irr::io::path& dirPat
 	}
 
 	return partDirs;
+}
+
+
+Part* StuffManager::getPartPrototype(const path& config) {
+	//Parser parser()
+
+
+	// FIXME
+	//return new Battery(config);
+	return 0;
 }

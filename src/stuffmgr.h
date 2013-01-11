@@ -11,6 +11,7 @@
 
 #include <list>
 #include <string>
+
 #include <irrlicht.h>
 
 
@@ -18,8 +19,10 @@
 #include "part.h"
 
 
+
 using irr::io::path;
 using irr::io::IFileList;
+using irr::u32;
 
 
 
@@ -30,6 +33,8 @@ public:
 	void close();
 
 private:
+
+	Part* getPartPrototype(const path &config);
 
 	IFileList* getPartDirectories(const path& dirPath = path());
 
