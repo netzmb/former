@@ -13,7 +13,7 @@
 class Config : public Singleton<Config> {
     public:
     
-    bool init();
+    bool init(int argc, char **argv);
     bool reset();
     void close();
 
@@ -26,7 +26,8 @@ class Config : public Singleton<Config> {
 
 
     private:
-
+    
+    irr::SIrrlichtCreationParameters _irrDevParams;
     irr::IrrlichtDevice* _irrDevice;
     irr::ITimer* _irrTimer;
     irr::core::dimension2du _resolution;

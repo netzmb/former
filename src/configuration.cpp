@@ -6,12 +6,27 @@
 
 
 #include <iostream>
+#include <getopt.h>
 
-bool Config::init() {
+bool Config::init(int argc, char **argv) {
     _irrDevice = NULL;
     _irrTimer = NULL;
 
     _resolution.set(800, 600);
+    _irrDevParams.DriverType = irr::video::EDT_OPENGL;
+
+    // options parsing
+    char opt;
+
+    while ((opt = getopt(argc, argv, "-n")) != -1) {
+        switch (opt) {
+            case 'n':
+                _irrDevParams.DriverType = irr::video::EDT_NULL;
+                break;
+            default:
+                std::cerr << "unrecognized option: " << opt << std::endl;
+        }
+    }
 
     bool resetResult = reset();
     return resetResult;
@@ -21,15 +36,14 @@ bool Config::init() {
 bool Config::reset() {
     // init Irrlicht Engine
 
-    irr::SIrrlichtCreationParameters params;
+//    irr::SIrrlichtCreationParameters params;
 
-    params.DriverType = irr::video::EDT_OPENGL;
     //params.DriverType = irr::video::EDT_NULL;
     //params.EventReceiver = new EngineEventReceiver();
-    params.EventReceiver = Input::instance().getEventReciever();
-    params.WindowSize = _resolution;
+    _irrDevParams.EventReceiver = Input::instance().getEventReciever();
+    _irrDevParams.WindowSize = _resolution;
 
-    _irrDevice = irr::createDeviceEx(params);
+    _irrDevice = irr::createDeviceEx(_irrDevParams);
     if (_irrDevice == NULL) {
     	// FIXME
     	std::cerr << "Creation graphics device failed" << std::endl;

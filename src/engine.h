@@ -10,7 +10,7 @@
 
 class Engine : public Singleton<Engine> {
     public:
-    bool init();
+    bool init(int argc, char **argv);
     void loop();
     void close();
 

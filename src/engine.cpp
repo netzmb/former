@@ -18,7 +18,7 @@
 
 
 
-bool Engine::init() {
+bool Engine::init(int argc, char **argv) {
 
     _isDone = false;
 
@@ -27,7 +27,7 @@ bool Engine::init() {
     //
     
     initSubSystem(Input::instance().init());
-    initSubSystem(Config::instance().init());
+    initSubSystem(Config::instance().init(argc, argv));
     initSubSystem(Logger::instance().init());
     initSubSystem(Graphics::instance().init());
     initSubSystem(Scripting::instance().init());
