@@ -7,12 +7,13 @@
 
 
 #include "singleton.h"
+#include "subsystem.h"
 #include "configuration.h"
 
 #include <irrlicht.h>
 
 
-class Graphics : public Singleton<Graphics> {
+class Graphics : public Singleton<Graphics>, public Subsystem {
     public:
     
     bool init();

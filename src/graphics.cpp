@@ -18,6 +18,8 @@ bool Graphics::init() {
     _driver = _device->getVideoDriver();
     _scenemgr = _device->getSceneManager();
 
+    setInitialized(true);
+
     return true;
 }
 
@@ -53,6 +55,10 @@ void Graphics::update() {
 
 
 void Graphics::close() {
+
+    if (!isInitialized())
+        return;
+
     _driver->drop();
     _scenemgr->drop();
     return;

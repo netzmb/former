@@ -11,6 +11,7 @@ bool Scripting::init() {
     
     reset();
 
+    setInitialized(true);
     return true;
 }
 
@@ -44,6 +45,9 @@ void Scripting::reset() {
 
 
 void Scripting::close() {
+    if (!isInitialized())
+        return;
+
     if (_lua != NULL)
         lua_close(_lua);
     return;

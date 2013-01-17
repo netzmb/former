@@ -9,6 +9,7 @@
 #define STAGEMGR_H_
 
 #include "singleton.h"
+#include "subsystem.h"
 #include "stage.h"
 #include <irrlicht.h>
 
@@ -18,7 +19,7 @@ using irr::scene::ISceneManager;
 using irr::core::stringc;
 using irr::core::list;
 
-class StageManager: public Singleton<StageManager> {
+class StageManager: public Singleton<StageManager>, public Subsystem {
 public:
 
 	bool init();

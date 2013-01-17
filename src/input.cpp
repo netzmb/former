@@ -12,10 +12,15 @@
 
 bool Input::init() {
 	_eventReciever = new EngineEventReceiver;
+
+    setInitialized(true);
 	return true;
 }
 
 void Input::close() {
+    if (!isInitialized())
+        return;
+
 	delete _eventReciever;
 	return;
 }

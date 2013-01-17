@@ -30,6 +30,8 @@ bool Logger::init() {
 
 	info("Logger::init() logger initialized");
 
+    setInitialized(true);
+
     return true;
 }
 

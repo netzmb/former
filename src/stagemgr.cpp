@@ -14,6 +14,8 @@ bool StageManager::init() {
 	_irrSceneManager = NULL;
 	_irrSceneManager = Graphics::instance().getSceneManager();
 
+    setInitialized(true);
+
 	return true;
 }
 
@@ -30,6 +32,9 @@ void StageManager::update() {
 
 
 void StageManager::close() {
+
+    if (!isInitialized())
+        return;
 
 	list<Stage*>::Iterator i=_stages.begin();
 	while (i != _stages.end())

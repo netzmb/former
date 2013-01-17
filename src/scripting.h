@@ -7,11 +7,12 @@
 
 
 #include "singleton.h"
+#include "subsystem.h"
 
 #include <lua.hpp>
 #include <irrlicht.h>
 
-class Scripting : public Singleton<Scripting> {
+class Scripting : public Singleton<Scripting>, public Subsystem {
     public:
 
     bool init();

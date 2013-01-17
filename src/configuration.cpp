@@ -29,6 +29,9 @@ bool Config::init(int argc, char **argv) {
     }
 
     bool resetResult = reset();
+    
+    setInitialized(true);
+
     return resetResult;
 }
 
@@ -69,6 +72,9 @@ bool Config::reset() {
 
 
 void Config::close() {
+    if (!isInitialized())
+        return;
+
 	_irrDevice->closeDevice();
 	//_irrDevice->drop();
     return;

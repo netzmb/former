@@ -9,6 +9,8 @@
 #define INPUT_H_
 
 #include "singleton.h"
+#include "subsystem.h"
+
 #include <irrlicht.h>
 
 
@@ -21,7 +23,7 @@ public:
 };
 
 
-class Input : public Singleton<Input> {
+class Input : public Singleton<Input>, public Subsystem {
 public:
 	bool init();
 	void close();
@@ -36,8 +38,6 @@ public:
 private:
 	vector2di _mousePos;
 	EngineEventReceiver* _eventReciever;
-
-
 };
 
 

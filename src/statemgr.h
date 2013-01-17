@@ -11,9 +11,10 @@
 
 #include "states/state.h"
 #include "singleton.h"
+#include "subsystem.h"
 
 
-class StateManager : public Singleton<StateManager> {
+class StateManager : public Singleton<StateManager>, public Subsystem {
     public:
 
 	enum StateType {

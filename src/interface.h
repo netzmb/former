@@ -9,6 +9,7 @@
 #define INTERFACE_H_
 
 #include "singleton.h"
+#include "subsystem.h"
 
 #include <irrlicht.h>
 
@@ -18,7 +19,7 @@ using irr::core::recti;
 using irr::video::ITexture;
 
 
-class Interface : public Singleton<Interface> {
+class Interface : public Singleton<Interface>, public Subsystem {
     public:
 
 	enum GuiTextures {

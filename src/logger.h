@@ -8,11 +8,12 @@
 
 #include <irrlicht.h>
 #include "singleton.h"
+#include "subsystem.h"
 
 
 
 
-class Logger : public Singleton<Logger> {
+class Logger : public Singleton<Logger>, public Subsystem {
     public:
 
     bool init();

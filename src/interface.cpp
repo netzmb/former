@@ -53,6 +53,7 @@ bool Interface::init() {
     // hide default mouse cursor
     _device->getCursorControl()->setVisible(false);
 
+    setInitialized(true);
 
     return true;
 }
@@ -73,6 +74,9 @@ void Interface::clear() {
 
 
 void Interface::close() {
+    if (!isInitialized())
+        return;
+
     return;
 }
 

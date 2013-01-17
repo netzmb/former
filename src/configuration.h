@@ -7,10 +7,11 @@
 
 
 #include "singleton.h"
+#include "subsystem.h"
 #include <irrlicht.h>
 
 
-class Config : public Singleton<Config> {
+class Config : public Singleton<Config>, public Subsystem {
     public:
     
     bool init(int argc, char **argv);
