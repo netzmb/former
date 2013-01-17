@@ -1,5 +1,5 @@
 //
-// part.c
+// part.h
 //
 //
 
@@ -10,14 +10,25 @@
 #include <irrlicht.h>
 #include "material.h"
 
+using irr::io::path;
 
 class Part {
-  private:
-  irr::core::list<Material> _materials;
-  float _mass;
-  int _hitPoints;
-  int _explosiveFactor;
-  irr::core::list<irr::core::stringc> _scripts;
+public:
+
+protected:
+	Part() : _configFile(), _mass(0), _hitPoints(0), _explosiveFactor(0) {};
+
+private:
+
+	// protect creating abstract part
+
+	path _configFile;
+
+	irr::core::list<Material> _materials;
+	float _mass;
+	int _hitPoints;
+	int _explosiveFactor;
+	irr::core::list<irr::core::stringc> _scripts;
 };
 
 

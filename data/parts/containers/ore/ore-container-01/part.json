@@ -1,0 +1,13 @@
+{
+"part" : {
+  "class" : "parts.container.ore",
+  "name" : "ore container mk01",
+  "mass" : 0.2,
+  "model" : "ore-container-01",
+  "matherials" : {"chydrates" : 0.19, "steel": 2.2},
+  "class-specific" : {
+    "capacity" : 200,
+    "max-mass" : 2560,
+  }
+}
+}

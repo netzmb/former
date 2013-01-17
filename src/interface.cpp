@@ -95,7 +95,8 @@ void Interface::updateMouse() {
 }
 
 
-irr::video::ITexture* Interface::loadTex(const irr::core::stringc& texPath) {
+//irr::video::ITexture* Interface::loadTex(const irr::core::stringc& texPath) {
+irr::video::ITexture* Interface::loadTex(const irr::io::path& texPath) {
 	irr::video::ITexture* texture = _driver->getTexture(texPath);
 
 	if (texture == NULL) {

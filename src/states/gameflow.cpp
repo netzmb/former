@@ -8,6 +8,7 @@
 #include "gameflow.h"
 
 #include "stagemgr.h"
+#include "stuffmgr.h"
 
 bool GameflowState::init() {
 	StageManager::instance().init();
@@ -15,7 +16,14 @@ bool GameflowState::init() {
 	// FIXME code for test stage
 	Stage* stage = StageManager::instance().createStage("teststage");
 
+	// load units list and other
+	StuffManager::instance().init();
+
+	// load stage geometry
 	StageManager::instance().setMainStage(stage);
+
+
+
 
 
 	changeStatus(SSTATUS_EXECUTING);
@@ -31,6 +39,7 @@ void GameflowState::update() {
 
 void GameflowState::close() {
 	StageManager::instance().close();
+	StuffManager::instance().close();
 	changeStatus(SSTATUS_DONE);
 	return;
 }
