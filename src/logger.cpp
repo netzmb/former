@@ -62,7 +62,7 @@ void Logger::info(const char* format, ...) {
 	vsprintf(msgBuffer, format, argList);
 	va_end(argList);
 
-	_irrLogger->log(msgBuffer, irr::ELL_INFORMATION);
+	log(msgBuffer, irr::ELL_INFORMATION);
 	return;
 }
 
@@ -77,7 +77,7 @@ void Logger::warning(const char* format, ...) {
 	vsprintf(msgBuffer, format, argList);
 	va_end(argList);
 
-	_irrLogger->log(msgBuffer, irr::ELL_WARNING);
+	log(msgBuffer, irr::ELL_WARNING);
 	return;
 }
 
@@ -92,7 +92,6 @@ void Logger::error(const char* format, ...) {
 	vsprintf(msgBuffer, format, argList);
 	va_end(argList);
 
-	//_irrLogger->log(msgBuffer, irr::ELL_ERROR);
 	log(msgBuffer, irr::ELL_ERROR);
 	return;
 }
