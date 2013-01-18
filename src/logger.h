@@ -19,18 +19,18 @@ class Logger : public Singleton<Logger>, public Subsystem {
     bool init();
     void close();
 
-    //static void error(const char* text) { _irrLogger->log(text, irr::ELL_ERROR); }
     static void error(const char* format, ...);
-    //static void warning(const char* text) { _irrLogger->log(text, irr::ELL_WARNING); }
     static void warning(const char* format, ...);
-    //static void info(const char* text) { _irrLogger->log(text, irr::ELL_INFORMATION); }
     static void info(const char* format, ...);
-
-    //static void format(const char* format, ...);
 
     static void storeLine(const char* text);
 
+    
+
     private:
+
+    static void log(const char* logBuffer, const irr::ELOG_LEVEL logLevel);
+
     static irr::ILogger* _irrLogger;
     static irr::io::IWriteFile* _logFile;
 };

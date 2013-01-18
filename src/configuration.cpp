@@ -25,6 +25,7 @@ bool Config::init(int argc, char **argv) {
                 break;
             default:
                 std::cerr << "unrecognized option: " << opt << std::endl;
+                break;
         }
     }
 
@@ -75,8 +76,9 @@ void Config::close() {
     if (!isInitialized())
         return;
 
-	_irrDevice->closeDevice();
-	//_irrDevice->drop();
+	if (_irrDevice != NULL)
+		_irrDevice->closeDevice();
+
     return;
 }
 

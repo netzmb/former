@@ -2,11 +2,12 @@
 // logger.cpp
 //
 
-#include <stdarg.h>
 #include "logger.h"
-
-
 #include "configuration.h"
+
+#include <stdarg.h>
+#include <iostream>
+
 
 #define LOG_LINE_BUFSIZE 1024
 
@@ -91,7 +92,8 @@ void Logger::error(const char* format, ...) {
 	vsprintf(msgBuffer, format, argList);
 	va_end(argList);
 
-	_irrLogger->log(msgBuffer, irr::ELL_ERROR);
+	//_irrLogger->log(msgBuffer, irr::ELL_ERROR);
+	log(msgBuffer, irr::ELL_ERROR);
 	return;
 }
 
@@ -115,4 +117,24 @@ void Logger::storeLine(const char* text) {
 	return;
 }
 
+
+void Logger::log(const char* logBuffer, const irr::ELOG_LEVEL logLevel) {
+
+	if (_irrLogger == NULL) {
+
+		switch (logLevel) {
+		case irr::ELL_ERROR:
+			std::cerr << "ERROR: " << logBuffer << std::endl;
+			break;
+		default:
+			std::cout << logBuffer << std::endl;
+			break;
+		}
+
+		} else {
+		_irrLogger->log(logBuffer, irr::ELL_ERROR);
+	}
+
+    return;
+}
 
