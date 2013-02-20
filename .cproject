@@ -30,6 +30,8 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/former/src}&quot;"/>
 									<listOptionValue builtIn="false" value="/home/moss/src/libs/jsoncpp/include"/>
 									<listOptionValue builtIn="false" value="/home/moss/src/libs/irrlicht/include"/>
+									<listOptionValue builtIn="false" value="/usr/include/bullet"/>
+									<listOptionValue builtIn="false" value="/home/moss/src/libs/irrBullet/source"/>
 								</option>
 								<inputType id="org.eclipse.cdt.build.core.settings.holder.inType.1785218067" languageId="org.eclipse.cdt.core.g++" languageName="GNU C++" sourceContentType="org.eclipse.cdt.core.cxxSource,org.eclipse.cdt.core.cxxHeader" superClass="org.eclipse.cdt.build.core.settings.holder.inType"/>
 							</tool>
@@ -69,4 +71,5 @@
 			</profile>
 		</scannerConfigBuildInfo>
 	</storageModule>
+	<storageModule moduleId="org.eclipse.cdt.make.core.buildtargets"/>
 </cproject>

@@ -13,6 +13,7 @@
 #include "logger.h"
 #include "statemgr.h"
 #include "graphics.h"
+#include "physics.h"
 #include "scripting.h"
 #include "interface.h"
 
@@ -30,6 +31,7 @@ bool Engine::init(int argc, char **argv) {
     initSubSystem(Config::instance().init(argc, argv));
     initSubSystem(Logger::instance().init());
     initSubSystem(Graphics::instance().init());
+    initSubSystem(Physics::instance().init());
     initSubSystem(Scripting::instance().init());
     initSubSystem(Interface::instance().init());
     initSubSystem(StateManager::instance().init());
@@ -46,9 +48,12 @@ bool Engine::init(int argc, char **argv) {
 void Engine::loop() {
 
     while (!isDone()) {
-        Graphics::instance().frameBegin();
+    	Graphics::instance().frameBegin();
+    	Physics::instance().frameBegin();
+
     	StateManager::instance().update();
     	Interface::instance().update();
+    	Physics::instance().frameEnd();
         Graphics::instance().frameEnd();
         Scripting::instance().update();
         // FIXME
@@ -63,6 +68,7 @@ void Engine::close() {
     StateManager::instance().close();
 	Interface::instance().close();
     Scripting::instance().close();
+    Physics::instance().close();
     Graphics::instance().close();
     Logger::instance().close();
     Config::instance().close();

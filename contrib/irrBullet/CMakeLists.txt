@@ -1,12 +1,10 @@
 #
 #
 cmake_minimum_required("VERSION" "2.6")
-project(former)
+project(irrBullet)
 #add_definitions("-Wall -pedantic")
 
-
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
-
 
 
 #
@@ -35,37 +33,25 @@ message("BTYPE ${CMAKE_BUILD_TYPE}")
 #
 # Find libraries
 #
-find_package(Lua51 REQUIRED)
 find_package(Irrlicht REQUIRED)
 find_package(Bullet REQUIRED)
-find_package(irrBullet REQUIRED)
-find_package(JsonCpp REQUIRED)
-
-message("JsonCpp includes: ${JSONCPP_INCLUDE_DIR}")
-message("JsonCpp libs:     ${JSONCPP_LIBRARIES}")
-
 
 
 # for irrlicht
-find_package(JPEG REQUIRED)
-find_package(BZip2 REQUIRED)
-find_package(PNG REQUIRED)
-find_package(OpenGL REQUIRED)   # for GL
-find_package(X11 REQUIRED)      # for Xxf86vm
+#find_package(JPEG REQUIRED)
+#find_package(BZip2 REQUIRED)
+#find_package(PNG REQUIRED)
+#find_package(OpenGL REQUIRED)   # for GL
+#find_package(X11 REQUIRED)      # for Xxf86vm
 
 
 #add_subdirectory(deps/irrbullet)
-#set(IRRBULLET_INCLUDE_DIRS "${PROJECT_SOURCE_DIR}/deps/irrBullet/source")
-#set(IRRBULLET_LIBRARIES    "${PROJECT_SOURCE_DIR}/deps/irrBullet/build/libirrBullet.a")
-
-
 
 #
 # connecting libs
 #
 include_directories(
-    ${PROJECT_SOURCE_DIR}/src
-    ${LUA_INCLUDE_DIRS}
+    ${PROJECT_SOURCE_DIR}/source
     ${IRRLICHT_INCLUDE_DIRS}
     ${JPEG_INCLUDE_DIRS}
     ${BZIP2_INCLUDE_DIRS}
@@ -73,33 +59,23 @@ include_directories(
     ${OPENGL_INCLUDE_DIRS}
     ${X11_INCLUDE_DIRS}
     ${BULLET_INCLUDE_DIRS}
-    ${JSONCPP_INCLUDE_DIR}
-    ${IRRBULLET_INCLUDE_DIRS}
     )
 
-#message("Bullet head:     ${BULLET_INCLUDE_DIRS}")
-#message("Bullet libs:     ${BULLET_LIBRARIES}")
+message("Bullet head:     ${BULLET_INCLUDE_DIRS}")
+message("Bullet libs:     ${BULLET_LIBRARIES}")
 
-aux_source_directory(src former_SRCS)
-aux_source_directory(src/states former_SRCS)
-
+aux_source_directory(source irrBullet_SRCS)
 
 
-add_executable(${PROJECT_NAME} ${former_SRCS})
-
-
+add_library(${PROJECT_NAME} ${irrBullet_SRCS})
 
 target_link_libraries(${PROJECT_NAME}
-    ${LUA_LIBRARIES}
     ${IRRLICHT_LIBRARIES}
     ${JPEG_LIBRARIES}
     ${BZIP2_LIBRARIES}
     ${PNG_LIBRARIES}
     ${OPENGL_LIBRARIES}
-    #${X11_X11_LIB}
     ${X11_Xxf86vm_LIB}
     ${BULLET_LIBRARIES}
-    ${JSONCPP_LIBRARIES}
-    ${IRRBULLET_LIBRARIES}
     )
 
