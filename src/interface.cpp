@@ -173,3 +173,9 @@ recti Interface::getTexRect(const ITexture* texture) {
 
 
 
+
+void Interface::toggleConsole() {
+
+	return;
+}
+

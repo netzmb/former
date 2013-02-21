@@ -58,6 +58,9 @@ class Interface : public Singleton<Interface>, public Subsystem {
     recti getTexRect(const ITexture* texture);
 
 
+    void toggleConsole();
+
+
 
     private:
 
