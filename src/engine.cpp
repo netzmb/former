@@ -54,6 +54,7 @@ void Engine::loop() {
     	StateManager::instance().update();
     	Interface::instance().update();
     	Physics::instance().frameEnd();
+    	//Interface::instance().update();
         Graphics::instance().frameEnd();
         Scripting::instance().update();
         // FIXME

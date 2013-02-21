@@ -21,6 +21,7 @@ Interface::Interface() {
 	_driver = NULL;
 	_irrGUI = NULL;
 	_showMouse = true;
+	_consoleWindow = NULL;
 	return;
 }
 
@@ -53,6 +54,12 @@ bool Interface::init() {
     // hide default mouse cursor
     _device->getCursorControl()->setVisible(false);
 
+
+
+    Console::instance().init(_irrGUI);
+    // FIXME
+    Console::instance().toggle();
+
     setInitialized(true);
 
     return true;
@@ -60,6 +67,10 @@ bool Interface::init() {
 
 
 void Interface::update() {
+
+
+
+    _irrGUI->drawAll();
 
     updateMouse();
 
@@ -77,6 +88,8 @@ void Interface::close() {
     if (!isInitialized())
         return;
 
+    Console::instance().close();
+
     return;
 }
 
@@ -90,6 +103,10 @@ void Interface::updateMouse() {
 			0,		// clip rectangle
 			irr::video::SColor(255,255,255,255),		// color
 			true);	//use alpha-channel
+
+
+	// FIXME
+	Console::instance().writeLine(L"mouse moved");
 
 	return;
 }
@@ -169,13 +186,5 @@ ITexture* Interface::draw2dImage(const stringc& texPath, texScreenAlign align) {
 recti Interface::getTexRect(const ITexture* texture) {
 	irr::core::dimension2du texSize = texture->getOriginalSize();
 	return irr::core::recti(0, 0, texSize.Width, texSize.Height);
-}
-
-
-
-
-void Interface::toggleConsole() {
-
-	return;
 }
 

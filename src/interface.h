@@ -10,6 +10,7 @@
 
 #include "singleton.h"
 #include "subsystem.h"
+#include "console.h"
 
 #include <irrlicht.h>
 
@@ -36,6 +37,13 @@ class Interface : public Singleton<Interface>, public Subsystem {
 		ALIGN_COUNT,
 	};
 
+	enum guiElements {
+		GE_CONSOLE,
+		GE_CONSOLE_CMD_LINE,
+		GE_CONSOLE_OUTPUT,
+		GE_COUNT
+	};
+
     Interface();
 
     bool init();
@@ -58,7 +66,7 @@ class Interface : public Singleton<Interface>, public Subsystem {
     recti getTexRect(const ITexture* texture);
 
 
-    void toggleConsole();
+    void toggleConsole() { Console::instance().toggle(); }
 
 
 
@@ -76,6 +84,10 @@ class Interface : public Singleton<Interface>, public Subsystem {
     irr::video::ITexture* _stubTex;
     //irr::scene::ISceneManager* _scenemgr;
     //irr::video::SColor _frameColor;        //
+
+
+    irr::gui::IGUIWindow* _consoleWindow;
+
 };
 
 
