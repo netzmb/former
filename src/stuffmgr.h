@@ -10,6 +10,7 @@
 
 
 #include <list>
+#include <map>
 #include <string>
 
 #include <irrlicht.h>
@@ -32,13 +33,16 @@ public:
 	void update();
 	void close();
 
+	const Material* getMaterial(const std::string& materialName) { return _materials[materialName]; }
+
 private:
 
-	Part* getPartPrototype(const path &config);
+	Part* getPartPrototype(const std::string& config);
 
 	IFileList* getPartDirectories(const path& dirPath = path());
 
 	std::list<Part*> _parts;
+	std::map<std::string, Material*> _materials;
 
 
 

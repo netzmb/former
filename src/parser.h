@@ -9,6 +9,7 @@
 #define PARSER_H_
 
 #include <irrlicht.h>
+#include <string>
 #include <json/json.h>
 #include "statemgr.h"
 
@@ -22,7 +23,7 @@ public:
 
 	static bool parseStates(StateManager* stManager);
 
-	static Json::Value getJsonRoot(const stringc& jsonFile);
+	static void getJsonRoot(const std::string& jsonFile, Json::Value& root);
 	static irr::video::SColor parseColor(const Json::Value& root);
 
 

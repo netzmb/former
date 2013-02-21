@@ -40,7 +40,7 @@ bool StuffManager::init() {
 
 
 		//Part* part = getPartPrototype(partDirs->getFullFileName(fileIndex));
-		Part* part = getPartPrototype(partDirs->getFullFileName(fileIndex));
+		Part* part = getPartPrototype(partDirs->getFullFileName(fileIndex).c_str());
 		_parts.push_back(part);
 	}
 
@@ -49,6 +49,37 @@ bool StuffManager::init() {
 
 	if (partDirs)
 		partDirs->drop();
+
+
+	//
+	// load materials list
+	//
+
+	Logger::info("\tloading materials");
+	Json::Value matList;
+	Parser::getJsonRoot("parts/materials.json", matList);
+
+	matList = matList["materials"];
+
+	for (Json::ArrayIndex i=0; i < matList.size(); i++) {
+
+		std::string matName(matList[i]["name"].asString());
+
+		// skip exist materials
+		if (_materials.count(matName) > 0)
+			continue;
+
+		Logger::info("\t +material %s, density: %f\n", matName.c_str(), matList[i]["density"].asFloat());
+
+		Material* material = new Material(matName);
+
+		material->setDensity(matList[i]["density"].asFloat());
+
+		_materials[matName] = material;
+	}
+
+
+	Logger::info("\t%d materials loaded", _materials.size());
 
 	return true;
 }
@@ -72,6 +103,8 @@ void StuffManager::close() {
 	}
 
 	Logger::info("StuffManager::close() done");
+
+	// TODO clear materials list on close in stuffmgr
 
 	return;
 }
@@ -114,12 +147,15 @@ irr::io::IFileList* StuffManager::getPartDirectories(const irr::io::path& dirPat
 }
 
 
-Part* StuffManager::getPartPrototype(const path& config) {
+Part* StuffManager::getPartPrototype(const std::string& config) {
 	//Parser parser()
 
 	// TODO add parts - wide part dynamic property adder
 
 	// FIXME
 	//return new Battery(config);
-	return 0;
+
+	Part* part = new Part(config.c_str());
+
+	return part;
 }

@@ -72,9 +72,7 @@ Parser::Parser() {
 
 
 
-Json::Value Parser::getJsonRoot(const stringc& jsonFile) {
-
-	Json::Value root;
+void Parser::getJsonRoot(const std::string& jsonFile, Json::Value& root) {
 
 	// TODO implement read json from archived resources
 	std::string resName("data/");
@@ -84,7 +82,7 @@ Json::Value Parser::getJsonRoot(const stringc& jsonFile) {
 
 	if (!resFile.is_open()) {
 		Logger::warning("res file does not open: %s", jsonFile.c_str());
-		return root;
+		return;
 	}
 
 	std::ostringstream fileStream;
@@ -102,10 +100,10 @@ Json::Value Parser::getJsonRoot(const stringc& jsonFile) {
 				jsonFile.c_str(),
 				reader.getFormatedErrorMessages().c_str());
 
-		return root;
+		return;
 	}
 
-	return root;
+	return;
 }
 
 
@@ -114,7 +112,8 @@ Json::Value Parser::getJsonRoot(const stringc& jsonFile) {
 bool Parser::parseStates(StateManager* stManager) {
 	Logger::info("StateManager parse states");
 
-	Json::Value root = getJsonRoot("init.json");
+	Json::Value root;
+	getJsonRoot("init.json", root);
 
 	const Json::Value states = root["states"];
 

@@ -1,7 +1,7 @@
 {
-"matherials" : {
-  "steel" : {
-    "solidity" : 10
-  }
-}
+"materials" : [
+  {"name" : "steel",     "density" : 2.6},
+  {"name" : "aluminium", "density" : 0.2},
+  {"name" : "rubber",    "density" : 0.6}
+  ]
 }

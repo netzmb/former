@@ -8,11 +8,20 @@
 #define _MATERIAL_H_
 
 #include <irrlicht.h>
+#include <string>
 
 class Material {
-  irr::core::stringc _name;
-  float density;
-  float quantity;
+public:
+	Material(const std::string& name) :
+		_name(name),
+		_density(0) {};
+
+	void setDensity(float density) { _density = density; }
+	float getDensity() const { return _density; }
+
+private:
+  std::string _name;
+  float _density;
 };
 
 

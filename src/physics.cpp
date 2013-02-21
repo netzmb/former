@@ -1,5 +1,4 @@
 #include "physics.h"
-#include "physics_debug.h"
 
 #include <configuration.h>
 

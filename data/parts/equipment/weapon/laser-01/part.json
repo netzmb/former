@@ -4,6 +4,10 @@
   "name" : "laser 01",
   "mass" : 400.00,
   "model" : "laser-01",
-  "matherials" : {"steel": 10}
+  "hitPoints" : 400.0,
+  "persistence" : 12.0,
+
+
+  "materials" : {"steel": 10}
   }
 }
