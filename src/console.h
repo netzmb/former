@@ -22,6 +22,9 @@ public:
 	void toggle() { _consoleWindow->setVisible(!_consoleWindow->isVisible()); }
 	void writeLine(const wchar_t* text);
 private:
+
+	bool loadCommands();
+
 	irr::gui::IGUIWindow*  _consoleWindow;
 	irr::gui::IGUIEditBox* _conOutput;
 	irr::gui::IGUIEditBox* _conInput;

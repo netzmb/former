@@ -4,6 +4,9 @@
 
 #include "console.h"
 #include "interface.h"
+#include "configuration.h"
+#include "logger.h"
+#include "scripting.h"
 
 
 using irr::core::position2di;
@@ -76,8 +79,9 @@ bool Console::init(irr::gui::IGUIEnvironment* env) {
 			Interface::GE_CONSOLE_OUTPUT
 			);
 
-	// FIXME disable edit for console output
-	_conOutput->setEnabled(true);
+
+	_conOutput->setEnabled(false);
+
 	// TODO add console output alignment
 	_conOutput->setTextAlignment(irr::gui::EGUIA_UPPERLEFT, irr::gui::EGUIA_LOWERRIGHT);
 
@@ -94,11 +98,18 @@ bool Console::init(irr::gui::IGUIEnvironment* env) {
 	_conInput->setToolTipText(L"enter console command here");
 
 
+	loadCommands();
+
+
 	return true;
 }
 
 
 void Console::close() {
+	_consoleWindow->setEnabled(false);
+	_conInput->drop();
+	_conOutput->drop();
+	_consoleWindow->drop();
 	return;
 }
 
@@ -109,5 +120,41 @@ void Console::writeLine(const wchar_t* text) {
 	//_conOutput->setText(L"test asd");
 
 	return;
+}
+
+
+
+// TODO implement DRY for StuffManager::getPartDirectories and console script search
+
+bool Console::loadCommands() {
+	//
+	// get script files list
+	//
+
+	irr::io::IFileSystem* _fileSystem = Config::instance().getFS();
+	const irr::core::stringc pathFilter("scripts/console");
+
+
+	for (irr::u32 archIndex=0; archIndex < _fileSystem->getFileArchiveCount(); ++archIndex) {
+		const irr::io::IFileList* files = _fileSystem->getFileArchive(archIndex)->getFileList();
+
+
+		for (irr::u32 fileIndex=0; fileIndex < files->getFileCount(); ++fileIndex) {
+
+
+			if (!files->getFullFileName(fileIndex).equalsn(pathFilter.c_str(), pathFilter.size()) ||
+					files->isDirectory(fileIndex))
+				continue;
+
+			const irr::io::path scriptFile = irr::io::path("data/") + files->getFullFileName(fileIndex);
+
+			Logger::info("\t Console::loadScript: %s", scriptFile.c_str());
+			Scripting::instance().runFile(scriptFile.c_str());
+		}
+	}
+
+
+
+	return true;
 }
 

@@ -104,10 +104,6 @@ void Interface::updateMouse() {
 			irr::video::SColor(255,255,255,255),		// color
 			true);	//use alpha-channel
 
-
-	// FIXME
-	Console::instance().writeLine(L"mouse moved");
-
 	return;
 }
 

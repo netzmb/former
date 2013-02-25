@@ -4,6 +4,7 @@
 
 #include "scripting.h"
 #include "logger.h"
+#include "console.h"
 
 bool Scripting::init() {
 
@@ -33,12 +34,27 @@ void Scripting::reset() {
         {"load", &Scripting::SceneLoad},
         {NULL, NULL}
         };
+
+
     /*_sceneFunctions = {
         {"load", &Scripting::SceneLoad},
         {NULL, NULL}
         };*/
 
     luaL_register(_lua, "Scene", _sceneFunctions);
+
+
+    //
+    // GUI functions
+    //
+
+    static const luaL_Reg _guiFunctions[] = {
+        {"toggleConsole", &Scripting::GUItoggleConsole},
+        {NULL, NULL}
+        };
+
+    luaL_register(_lua, "EngineGui", _guiFunctions);
+
 
     return;
 }
@@ -55,22 +71,14 @@ void Scripting::close() {
 
 
 
-bool Scripting::loadFile(const char* fileName) {
+bool Scripting::runFile(const char* fileName) {
     
-    // TODO add formatted output to logger
-	//irr::core::stringc message();
-	//Logger::warning("Scripting::loadFile(" << fileName << ")" << std::endl;
 	Logger::info("Scripting::loadFile(%s)", fileName);
 
     // TODO to wrapper "Files" (archive access)
-    //const std::string fullName = "/scripts/" + fileName;
-
-    //std::cout << "Scripting::loadFile(" << fullName << ")" << std::endl;
 
     if (luaL_dofile(_lua, fileName) != 0) {
-        // FIXME
-        //std::cout << "Scripting::loadFile failed :" << fileName
-        //    << " : " << lua_tostring(_lua, -1) << std::endl;
+    	Logger::warning("Scripting::loadFile(%s) failed: %s", fileName, lua_tostring(_lua, -1));
         return false;
     }
 
@@ -96,4 +104,14 @@ int Scripting::SceneLoad(lua_State* lua) {
     return 1;
 }
 
+
+
+
+int Scripting::GUItoggleConsole(lua_State* lua) {
+	Logger::info("lua toggleConsole() called");
+
+	Console::instance().toggle();
+
+	return 0;
+}
 

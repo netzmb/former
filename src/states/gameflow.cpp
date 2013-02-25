@@ -38,8 +38,8 @@ void GameflowState::update() {
 
 
 void GameflowState::close() {
-	StageManager::instance().close();
 	StuffManager::instance().close();
+	StageManager::instance().close();
 	changeStatus(SSTATUS_DONE);
 	return;
 }

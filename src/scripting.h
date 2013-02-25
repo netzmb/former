@@ -20,9 +20,16 @@ class Scripting : public Singleton<Scripting>, public Subsystem {
     void reset();
     void close();
 
-    bool loadFile(const char* fileName);
+    bool runFile(const char* fileName);
 
     static int SceneLoad(lua_State* lua);
+
+    //
+    // GUI functions
+    //
+
+    static int GUItoggleConsole(lua_State* lua);
+
 
     private:
 

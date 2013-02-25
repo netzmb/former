@@ -110,7 +110,8 @@ void StuffManager::close() {
 }
 
 
-
+// TODO implement DRY for StuffManager::getPartDirectories and console script search
+//
 irr::io::IFileList* StuffManager::getPartDirectories(const irr::io::path& dirPath) {
 
 	Logger::info("\t part dirs scan, sources: %d", _fileSystem->getFileArchiveCount());

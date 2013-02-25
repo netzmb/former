@@ -10,6 +10,7 @@
 #include "logger.h"
 #include "configuration.h"
 #include "interface.h"
+#include "scripting.h"
 #include "serializer.h"
 
 #include "physics.h"
@@ -24,8 +25,15 @@ Stage::Stage(const irr::core::stringc& stageName)
 
 	irr::io::path stageDir("stages/");
 	_stagePath = path(stageDir + stageName + "/");
+	// TODO load stage scripts from irrlicht file loaders
+	path stageScript = path("data/") + _stagePath + "stage.lua";
+
 
 	Logger::info("Stage begin: %s", _stageName.c_str());
+
+	// load stage auto execution script (if exists)
+	if (_fileSystem->existFile(stageScript))
+		Scripting::instance().runFile(stageScript.c_str());
 
 
 	irr::scene::ICameraSceneNode* camera = _sceneMgr->addCameraSceneNodeMaya();
@@ -34,13 +42,8 @@ Stage::Stage(const irr::core::stringc& stageName)
 
 	irr::video::ITexture* skyDomeTex = Interface::instance().loadTex("textures/test_skydome.png");
 	_sceneMgr->addSkyDomeSceneNode(skyDomeTex);
-	//ISceneNode* testNode = _sceneMgr->addCubeSceneNode(2);
 
 
-
-	//ISceneNode* terrain = _sceneMgr->addAnimatedMeshSceneNode(_sceneMgr->getMesh("test.3ds"),0,NULL);
-	//terrain->setScale(irr::core::vector3df(10,10,10));
-	//ITerrainSceneNode* terrain = _sceneMgr->addTerrainSceneNode(_stagePath + "terrain-hmap.png");
 	ISceneNode* terrain = _sceneMgr->addCubeSceneNode(1);
 
 	terrain->setScale(irr::core::vector3df(10,1,10));
