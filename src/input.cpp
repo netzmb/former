@@ -7,7 +7,8 @@
 
 #include "input.h"
 #include "logger.h"
-
+#include "interface.h"
+#include "console.h"
 
 
 bool Input::init() {
@@ -33,6 +34,7 @@ bool EngineEventReceiver::OnEvent(const irr::SEvent& event) {
 	//
 	if (event.EventType == irr::EET_LOG_TEXT_EVENT) {
 		Logger::storeLine(event.LogEvent.Text);
+		Console::instance().putLine(event.LogEvent.Text);
 		// TODO log event receiver: implement suppress stdout flag
 		// return true suppress output to stdout
 	}
@@ -48,6 +50,11 @@ bool EngineEventReceiver::OnEvent(const irr::SEvent& event) {
 		}
 	}
 
+
+	// gui input processing
+	if (event.EventType == irr::EET_GUI_EVENT) {
+		Interface::instance().processEvents(event);
+	}
 
 	return false;
 }

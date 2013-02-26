@@ -5,6 +5,8 @@
  *      Author: moss
  */
 
+#include <stdlib.h> // for wcstombs, convert from wchar to char
+
 #include "interface.h"
 #include "logger.h"
 #include "configuration.h"
@@ -53,6 +55,29 @@ bool Interface::init() {
 
     // hide default mouse cursor
     _device->getCursorControl()->setVisible(false);
+
+    //
+    // set default fonts
+    //
+    irr::gui::IGUISkin* skin = _irrGUI->getSkin();
+
+    _fonts[GUIFONT_SMALL]  = _irrGUI->getFont("fonts/font_small.xml");
+    _fonts[GUIFONT_NORMAL] = _irrGUI->getFont("fonts/font_medium.xml");
+    _fonts[GUIFONT_LARGE]  = _irrGUI->getFont("fonts/font_large.xml");
+
+    for (int i=0; i < GUIFONT_COUNT; i++) {
+    	if (_fonts[i])
+    		continue;
+
+    	//_fonts[i] = skin->getFont(irr::gui::EGDF_DEFAULT);
+    	_fonts[i] = _irrGUI->getBuiltInFont();
+    }
+
+    //skin->setFont(_fonts[GUIFONT_SMALL]);
+
+
+
+
 
 
 
@@ -184,3 +209,45 @@ recti Interface::getTexRect(const ITexture* texture) {
 	return irr::core::recti(0, 0, texSize.Width, texSize.Height);
 }
 
+
+
+bool Interface::processEvents(const irr::SEvent& event) {
+
+	irr::gui::IGUIElement* caller = event.GUIEvent.Caller;
+
+	switch(caller->getID()) {
+	case Interface::GE_CONSOLE_CMD_LINE:
+		if (event.GUIEvent.EventType == irr::gui::EGET_EDITBOX_ENTER) {
+			Console::instance().runCommand(wchar2string(caller->getText()));
+		}
+		break;
+	default:
+		break;
+	}
+
+
+	return false;
+}
+
+
+
+std::string Interface::wchar2string(const wchar_t* text) {
+
+	const std::size_t textLen = wcslen(text);
+	char* buffer = new char[textLen];
+
+	size_t processed;
+	processed = wcstombs(buffer, text, textLen);
+
+	std::string out(buffer);
+
+	delete[] buffer;
+
+	return out;
+}
+
+
+
+std::wstring Interface::string2wstring(const std::string& text) {
+	return std::wstring(text.begin(), text.end());
+}

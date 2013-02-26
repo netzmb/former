@@ -30,6 +30,13 @@ class Interface : public Singleton<Interface>, public Subsystem {
 		GUITEX_COUNT
 	};
 
+	enum GuiFonts {
+		GUIFONT_SMALL,
+		GUIFONT_NORMAL,
+		GUIFONT_LARGE,
+		GUIFONT_COUNT,
+	};
+
 	enum texScreenAlign {
 		ALIGN_CENTER,
 		ALIGN_TOP,
@@ -68,7 +75,11 @@ class Interface : public Singleton<Interface>, public Subsystem {
 
     void toggleConsole() { Console::instance().toggle(); }
 
+    bool processEvents(const irr::SEvent& event);
 
+
+    std::string wchar2string(const wchar_t* text);
+    std::wstring string2wstring(const std::string& text);
 
     private:
 
@@ -78,6 +89,7 @@ class Interface : public Singleton<Interface>, public Subsystem {
     irr::video::IVideoDriver* _driver;
     irr::gui::IGUIEnvironment* _irrGUI;
     irr::video::ITexture* _guiTex[GUITEX_COUNT];
+    irr::gui::IGUIFont* _fonts[GUIFONT_COUNT];
 
 
     irr::io::path _stubPath;
@@ -87,6 +99,9 @@ class Interface : public Singleton<Interface>, public Subsystem {
 
 
     irr::gui::IGUIWindow* _consoleWindow;
+
+
+
 
 };
 

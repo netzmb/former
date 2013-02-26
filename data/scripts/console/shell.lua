@@ -1,9 +1,10 @@
 --
 -- Console commands
 --
--- quit
+-- shell
+--
+-- run interactive lua shell
 --
 
 print('Console command quit called (from console)')
-
 

@@ -1,9 +1,8 @@
 --
 -- Console commands
 --
--- quit
+-- test
 --
 
 print('Console command quit called (from console)')
-
 
